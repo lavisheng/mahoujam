@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8pb0hxnlp2y"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_582s7"]
+[ext_resource type="Texture2D" uid="uid://cvbi1otv6o7xo" path="res://assets/placeholderA.png" id="1_ndvjg"]
+[ext_resource type="PackedScene" uid="uid://b8ysiu8ij6jda" path="res://scenes/components/gravity.tscn" id="3_36asn"]
+[ext_resource type="PackedScene" uid="uid://ci6xi5xxivcwv" path="res://scenes/components/input.tscn" id="4_v2wi7"]
+[ext_resource type="PackedScene" uid="uid://bk1c7rwi2xi46" path="res://scenes/components/movement.tscn" id="5_cvtps"]
+[ext_resource type="PackedScene" uid="uid://dbglodvqd1rto" path="res://scenes/components/jump.tscn" id="6_57q4j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f28uj"]
+size = Vector2(100, 100)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "input", "movement", "jump")]
+script = ExtResource("1_582s7")
+gravity = NodePath("Gravity")
+input = NodePath("Input")
+movement = NodePath("Movement")
+jump = NodePath("Jump")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ndvjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f28uj")
+
+[node name="Gravity" parent="." instance=ExtResource("3_36asn")]
+
+[node name="Input" parent="." instance=ExtResource("4_v2wi7")]
+
+[node name="Movement" parent="." instance=ExtResource("5_cvtps")]
+
+[node name="Jump" parent="." instance=ExtResource("6_57q4j")]
