@@ -3,6 +3,8 @@ extends Node
 
 @export_subgroup("Setting")
 @export var speed: float = 100
+@export var air_control: bool = false
 
 func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
-	body.velocity.x = direction * speed;
+	if air_control or body.is_on_floor():
+		body.velocity.x = direction * speed;

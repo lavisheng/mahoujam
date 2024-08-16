@@ -9,6 +9,6 @@ extends CharacterBody2D
 func _physics_process(delta: float) -> void:
 	gravity.handle_gravity(self, delta)
 	movement.handle_horizontal_movement(self, input.input_horizontal)
-	jump.handle_jump(self, input.get_jump_input())
+	jump.handle_jump(self, input.get_jump_input(), input.input_horizontal * movement.speed)
 
 	move_and_slide()
