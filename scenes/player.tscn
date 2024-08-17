@@ -28,6 +28,7 @@ shape = SubResource("RectangleShape2D_vf57v")
 
 [node name="InputComponent" parent="." instance=ExtResource("4_akang")]
 
-[node name="MovementComponent" parent="." instance=ExtResource("5_i6bpe")]
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("gravity_component") instance=ExtResource("5_i6bpe")]
+gravity_component = NodePath("../GravityComponent")
 
 [node name="JumpComponent" parent="." instance=ExtResource("6_t1ets")]
