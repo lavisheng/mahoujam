@@ -13,9 +13,18 @@ var airdash_delta: float = .75
 var homing_delta: float = 2.
 
 
-func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
+func handle_horizontal_movement(
+	body: CharacterBody2D, direction: float, speedDelta: float, multiplier: float
+) -> void:
 	if not gravity_component.is_falling:
-		body.velocity.x = direction * ground_speed
+		body.velocity.x = direction * (ground_speed + speedDelta) * multiplier
+
+
+func handle_air_movement(
+	body: CharacterBody2D, direction: float, speedDelta: float, multiplier: float
+) -> void:
+	if gravity_component.is_falling:
+		body.velocity.x = direction * (ground_speed + speedDelta) * multiplier
 
 
 func handle_air_dash(body: CharacterBody2D, direction: float, delta: float) -> void:

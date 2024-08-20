@@ -9,8 +9,8 @@ var homing: bool = false
 
 
 func handle_gravity(body: CharacterBody2D, delta: float) -> void:
-    if not body.is_on_floor() and not airdash and not homing:
-        body.velocity.y += gravity * delta
-        is_falling = true
-    elif body.is_on_floor():
-        is_falling = false
+	if not body.is_on_floor() and not airdash and not homing:
+		body.velocity.y += gravity * delta
+		is_falling = true
+	elif body.is_on_floor():
+		is_falling = false

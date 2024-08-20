@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds38e0t1i272s"]
+[gd_scene load_steps=6 format=3 uid="uid://ds38e0t1i272s"]
 
 [ext_resource type="PackedScene" uid="uid://1r43qrqaybai" path="res://scenes/platform.tscn" id="1_as7qk"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_mn5ij"]
 [ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_7eb8n"]
+[ext_resource type="PackedScene" uid="uid://bqyutbnbqjx3l" path="res://scenes/vertical_platform.tscn" id="4_eg62s"]
+[ext_resource type="Resource" uid="uid://62bnbohbk04s" path="res://resource/suit_a_resource.tres" id="4_k0rhv"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mn5ij")
@@ -10,5 +12,15 @@ script = ExtResource("1_mn5ij")
 [node name="Platform" parent="." instance=ExtResource("1_as7qk")]
 position = Vector2(183, 132)
 
+[node name="Platform" parent="Platform" instance=ExtResource("1_as7qk")]
+position = Vector2(173, -58)
+
+[node name="Platform" parent="Platform/Platform" instance=ExtResource("1_as7qk")]
+position = Vector2(67, -106)
+
 [node name="Player" parent="." instance=ExtResource("2_7eb8n")]
 position = Vector2(170, 27)
+active_suit = ExtResource("4_k0rhv")
+
+[node name="Platform2" parent="." instance=ExtResource("4_eg62s")]
+position = Vector2(367, 22)

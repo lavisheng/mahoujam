@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Suit_a" load_steps=2 format=3 uid="uid://62bnbohbk04s"]
+
+[ext_resource type="Script" path="res://resource/suit_a_data.gd" id="1_7ul6j"]
+
+[resource]
+script = ExtResource("1_7ul6j")
+giga_jump_vel = -700.0
+suitColor = Color(0.85917, 0.000405646, 0.819583, 1)
+name = "suit_a"
+airSpeedDelta = 0
+airSpeedMultiplier = 0.5
+landSpeedDelta = 100
+landSpeedMultiplier = 1.5
+jumpPowerMultiplier = 1.0

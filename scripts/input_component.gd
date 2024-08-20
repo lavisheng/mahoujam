@@ -43,3 +43,7 @@ func get_jump_input() -> bool:
 
 func get_fire_input() -> bool:
 	return Input.is_action_just_pressed("fire")
+
+
+func get_sepcial_input() -> bool:
+	return Input.is_action_just_pressed("suit_power")

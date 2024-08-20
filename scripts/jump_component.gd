@@ -7,7 +7,7 @@ extends Node2D
 var is_jumping: bool = false
 
 
-func handle_jump(body: CharacterBody2D, want_to_jump: bool) -> void:
+func handle_jump(body: CharacterBody2D, want_to_jump: bool, jumpMultiplier: float) -> void:
 	if want_to_jump and body.is_on_floor():
-		body.velocity.y = jump_velocity
+		body.velocity.y = jump_velocity * jumpMultiplier
 	is_jumping = body.velocity.y < 0 and not body.is_on_floor()
