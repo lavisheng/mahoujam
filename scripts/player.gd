@@ -12,8 +12,10 @@ extends CharacterBody2D
 var bullets = 1
 var bullet = null
 
+func _ready() -> void:
+	modulate = inactive_suit.suitColor;
 
-#var bullet
+
 func fire():
 	if bullets > 0:
 		bullet = load("res://scenes/player_bullet.tscn").instantiate()
@@ -48,4 +50,5 @@ func _physics_process(delta):
 	movement_component.landed(self)
 	suit_component.ActivatePower(self, active_suit, input_component.get_special_input())
 	suit_component.ProcessPower(self, active_suit, input_component.get_special_input(), delta)
+	suit_component.ProcessSuitSwap( self, active_suit, inactive_suit, input_component.get_swap_input() );
 	move_and_slide()
