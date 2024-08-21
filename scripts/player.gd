@@ -1,10 +1,10 @@
+class_name Player
 extends CharacterBody2D
 
 @export_subgroup("Nodes")
 @export var gravity_component: GravityComponent
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
-@export var jump_component: JumpComponent
 #@export var homing_target :     Node
 var bullets = 1
 var bullet = null
@@ -29,7 +29,7 @@ func _physics_process(delta):
 		movement_component.handle_homing_dash(
 			self, bullet.transform, delta, input_component.get_homing_input()
 		)
-	jump_component.handle_jump(self, input_component.get_jump_input())
+	movement_component.handle_jump(self, input_component.get_jump_input())
 	input_component.input_doubletap = 0
 	movement_component.landed(self)
 	move_and_slide()
