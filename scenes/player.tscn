@@ -23,6 +23,7 @@ jumpPowerMultiplier = 0.0
 size = Vector2(24, 26)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component")]
+collision_layer = 3
 script = ExtResource("1_0d1te")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
