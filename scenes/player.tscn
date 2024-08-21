@@ -1,22 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://dggrw0wxguj32"]
+[gd_scene load_steps=8 format=3 uid="uid://dggrw0wxguj32"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
 [ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_ndvjg"]
 [ext_resource type="PackedScene" uid="uid://bcr4mxjnmm2dd" path="res://scenes/components/gravity_component.tscn" id="3_ai6lb"]
 [ext_resource type="PackedScene" uid="uid://ckihlbjdqjs2q" path="res://scenes/components/input_component.tscn" id="4_akang"]
 [ext_resource type="PackedScene" uid="uid://bmyqf2bljkqnx" path="res://scenes/components/movement_component.tscn" id="5_i6bpe"]
-[ext_resource type="PackedScene" uid="uid://bhd6skoip0ljw" path="res://scenes/components/jump_component.tscn" id="6_t1ets"]
 [ext_resource type="Script" path="res://scripts/suit_component.gd" id="7_2cdo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
 size = Vector2(24, 26)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "suit_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component")]
 script = ExtResource("1_0d1te")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
-jump_component = NodePath("JumpComponent")
 suit_component = NodePath("SuitComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -32,8 +30,6 @@ shape = SubResource("RectangleShape2D_vf57v")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("gravity_component") instance=ExtResource("5_i6bpe")]
 gravity_component = NodePath("../GravityComponent")
-
-[node name="JumpComponent" parent="." instance=ExtResource("6_t1ets")]
 
 [node name="SuitComponent" type="Node" parent="."]
 script = ExtResource("7_2cdo8")
