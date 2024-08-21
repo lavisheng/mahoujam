@@ -12,4 +12,7 @@ class_name SuitData
 
 
 func SuitAbilityCallback(body: CharacterBody2D, wantInput: bool):
-	pass
+    pass
+
+func SuitAbilityProcess(body: CharacterBody2D, wantInput: bool, delta: float):
+    pass

@@ -5,11 +5,11 @@ var hasBonusJump: bool = true
 
 
 func SuitAbilityCallback(_body: CharacterBody2D, _wantInput: bool):
-	# print( "I'm an overloaded suit b" );
-	# print( hasBonusJump );
-	if _wantInput and hasBonusJump:
-		_body.velocity.y = bonusJumpVel * jumpPowerMultiplier
-		hasBonusJump = false
+    # print( "I'm an overloaded suit b" );
+    # print( hasBonusJump );
+    if _wantInput and hasBonusJump:
+        _body.velocity.y = bonusJumpVel * jumpPowerMultiplier
+        hasBonusJump = false
 
-	if _body.is_on_floor() and not hasBonusJump:
-		hasBonusJump = true
+    if _body.is_on_floor() and not hasBonusJump:
+        hasBonusJump = true
