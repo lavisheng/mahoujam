@@ -18,9 +18,6 @@ var jump_velocity: float = -350.0
 func handle_jump(body: CharacterBody2D, want_to_jump: bool) -> void:
 	if want_to_jump and body.is_on_floor():
 		body.velocity.y = jump_velocity
-	elif not is_jumping and want_to_jump and num_airdashes > 0:
-		num_airdashes -= 1
-		body.velocity.y = jump_velocity
 	is_jumping = body.velocity.y < 0 and not body.is_on_floor()
 
 
@@ -55,10 +52,10 @@ func handle_air_dash(body: CharacterBody2D, direction: float, delta: float) -> v
 func landed(body: CharacterBody2D) -> void:
 	if body.is_on_floor():
 		body.transform = body.transform.looking_at(body.transform.get_origin() + Vector2(1.0, 0.0))
-		num_airdashes = NUM_AIRDASHES
-		num_homing = NUM_HOMING
-		homing_delta = 2.
-		gravity_component.homing = false
+		#num_airdashes = NUM_AIRDASHES
+		#num_homing = NUM_HOMING
+		#homing_delta = 2.
+		#gravity_component.homing = false
 
 
 func handle_homing_dash(

@@ -12,20 +12,21 @@ extends CharacterBody2D
 var bullets = 1
 var bullet = null
 
+
 func _ready() -> void:
-	modulate = inactive_suit.suitColor;
+	modulate = inactive_suit.suitColor
 
 
-func fire():
-	if bullets > 0:
-		bullet = load("res://scenes/player_bullet.tscn").instantiate()
-		bullet.transform = bullet.transform.translated(self.transform.get_origin())
-		get_parent().add_child(bullet)
-		bullets -= 1
+#func fire():
+#    if bullets > 0:
+#        bullet = load("res://scenes/player_bullet.tscn").instantiate()
+#        bullet.transform = bullet.transform.translated(self.transform.get_origin())
+#        get_parent().add_child(bullet)
+#        bullets -= 1
 
 
 func _physics_process(delta):
-	gravity_component.handle_gravity(self, delta)
+	gravity_component.handle_gravity(self, active_suit.air_movement, delta)
 	movement_component.handle_horizontal_movement(
 		self,
 		input_component.input_horizontal,
@@ -38,17 +39,19 @@ func _physics_process(delta):
 		active_suit.airSpeedDelta,
 		active_suit.airSpeedMultiplier
 	)
-	movement_component.handle_air_dash(self, input_component.input_doubletap, delta)
-	if input_component.get_fire_input():
-		fire()
-	if bullet != null:
-		movement_component.handle_homing_dash(
-			self, bullet.transform, delta, input_component.get_homing_input()
-		)
+	#movement_component.handle_air_dash(self, input_component.input_doubletap, delta)
+	#if input_component.get_fire_input():
+	#    fire()
+	#if bullet != null:
+	#    movement_component.handle_homing_dash(
+	#        self, bullet.transform, delta, input_component.get_homing_input()
+	#    )
 	movement_component.handle_jump(self, input_component.get_jump_input())
-	input_component.input_doubletap = 0
 	movement_component.landed(self)
-	suit_component.ActivatePower(self, active_suit, input_component.get_special_input())
-	suit_component.ProcessPower(self, active_suit, input_component.get_special_input(), delta)
-	suit_component.ProcessSuitSwap( self, active_suit, inactive_suit, input_component.get_swap_input() );
+	suit_component.ActivatePower(self, active_suit)
+	suit_component.ProcessPower(self, active_suit, delta)
+	suit_component.ProcessSuitSwap(
+		self, active_suit, inactive_suit, input_component.get_swap_input()
+	)
+	input_component.input_doubletap = 0
 	move_and_slide()

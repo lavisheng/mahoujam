@@ -18,6 +18,7 @@ airSpeedMultiplier = 0.0
 landSpeedDelta = 0
 landSpeedMultiplier = 0.0
 jumpPowerMultiplier = 0.0
+air_movement = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
 size = Vector2(24, 26)

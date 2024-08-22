@@ -9,10 +9,11 @@ class_name SuitData
 @export var landSpeedDelta: int
 @export var landSpeedMultiplier: float
 @export var jumpPowerMultiplier: float
+@export var air_movement: bool
 
 
-func SuitAbilityCallback(body: CharacterBody2D, wantInput: bool):
+func SuitAbilityCallback(player: Player):
     pass
 
-func SuitAbilityProcess(body: CharacterBody2D, wantInput: bool, delta: float):
+func SuitAbilityProcess(player: Player, delta: float):
     pass
