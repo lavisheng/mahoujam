@@ -5,10 +5,14 @@
 [resource]
 script = ExtResource("1_7ul6j")
 giga_jump_vel = -700.0
+homing_speed = 200.0
+homing_delta = 0.75
+hover_time = 0.0
 suitColor = Color(0.85917, 0.000405646, 0.819583, 1)
 name = "suit_a"
 airSpeedDelta = 0
 airSpeedMultiplier = 0.5
-landSpeedDelta = 100
-landSpeedMultiplier = 1.5
+landSpeedDelta = 0
+landSpeedMultiplier = 0.8
 jumpPowerMultiplier = 1.0
+air_movement = false

@@ -17,14 +17,6 @@ func _ready() -> void:
 	modulate = inactive_suit.suitColor
 
 
-#func fire():
-#    if bullets > 0:
-#        bullet = load("res://scenes/player_bullet.tscn").instantiate()
-#        bullet.transform = bullet.transform.translated(self.transform.get_origin())
-#        get_parent().add_child(bullet)
-#        bullets -= 1
-
-
 func _physics_process(delta):
 	gravity_component.handle_gravity(self, active_suit.air_movement, delta)
 	movement_component.handle_horizontal_movement(
@@ -39,14 +31,9 @@ func _physics_process(delta):
 		active_suit.airSpeedDelta,
 		active_suit.airSpeedMultiplier
 	)
-	#movement_component.handle_air_dash(self, input_component.input_doubletap, delta)
-	#if input_component.get_fire_input():
-	#    fire()
-	#if bullet != null:
-	#    movement_component.handle_homing_dash(
-	#        self, bullet.transform, delta, input_component.get_homing_input()
-	#    )
-	movement_component.handle_jump(self, input_component.get_jump_input())
+	movement_component.handle_jump(
+		self, input_component.get_jump_input(), active_suit.jumpPowerMultiplier, delta
+	)
 	movement_component.landed(self)
 	suit_component.ActivatePower(self, active_suit)
 	suit_component.ProcessPower(self, active_suit, delta)

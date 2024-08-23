@@ -38,7 +38,7 @@ func get_homing_input() -> bool:
 
 
 func get_jump_input() -> bool:
-	return Input.is_action_just_pressed("jump")
+	return Input.is_action_pressed("jump")
 
 
 func get_fire_input() -> bool:

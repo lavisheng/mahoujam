@@ -2,7 +2,7 @@ class_name GravityComponent
 extends Node2D
 
 @export_subgroup("Settings")
-@export var gravity: float = 1000.0
+@export var gravity: float = 1100.0
 var airdash: bool = false
 var is_falling: bool = false
 var homing: bool = false
