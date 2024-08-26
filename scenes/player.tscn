@@ -10,7 +10,10 @@
 
 [sub_resource type="Resource" id="Resource_w7uwr"]
 script = ExtResource("2_px7l7")
-bonusJumpVel = -250.0
+airdash_delta = 0.75
+dash_speed = 2000.0
+jump_velocity = -250.0
+special_jump_velocity = -600.0
 suitColor = Color(0, 0, 0, 1)
 name = ""
 airSpeedDelta = 0

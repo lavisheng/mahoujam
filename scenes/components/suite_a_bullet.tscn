@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3v7q4bbe7u8e"]
 
-[ext_resource type="Texture2D" uid="uid://dj4jjxdfm02lq" path="res://assets/placeholderD.png" id="1_pxn2r"]
+[ext_resource type="Texture2D" uid="uid://dftae85jdyurn" path="res://assets/placeholderE.png" id="1_61g23"]
 [ext_resource type="Script" path="res://scripts/suite_a_bullet.gd" id="2_eiavh"]
 
 [node name="SuiteABullet" type="Sprite2D"]
 scale = Vector2(0.025, 0.005)
-texture = ExtResource("1_pxn2r")
+texture = ExtResource("1_61g23")
 script = ExtResource("2_eiavh")
