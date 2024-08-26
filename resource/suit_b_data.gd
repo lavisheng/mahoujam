@@ -1,3 +1,5 @@
+#extends "res://resource/suit_data.gd"
+
 class_name Suit_b extends SuitData
 
 const NUM_AIRDASHES = 2
