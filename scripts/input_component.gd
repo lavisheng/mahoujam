@@ -6,7 +6,7 @@ const DOUBLETAP_DELAY = .25
 var doubletap_time = DOUBLETAP_DELAY
 var last_action = ""
 var input_doubletap: float = 0.0
-
+   
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
@@ -43,3 +43,6 @@ func get_jump_input() -> bool:
 
 func get_fire_input() -> bool:
 	return Input.is_action_just_pressed("fire")
+
+func get_attack_input() -> bool:
+	return Input.is_action_just_pressed("attack")

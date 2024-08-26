@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://crtqh7b1jsjy"]
+
+[ext_resource type="Script" path="res://scripts/attack_component.gd" id="1_o2rd4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4k71"]
+
+[node name="AttackComponent" type="Area2D" node_paths=PackedStringArray("left_hitbox", "right_hitbox")]
+script = ExtResource("1_o2rd4")
+left_hitbox = NodePath("LeftHitbox")
+right_hitbox = NodePath("RightHitbox")
+
+[node name="LeftHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f4k71")
+disabled = true
+debug_color = Color(0.884243, 0.294058, 0.413057, 0.42)
+
+[node name="RightHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f4k71")
+disabled = true
+debug_color = Color(0.884243, 0.294058, 0.413057, 0.42)

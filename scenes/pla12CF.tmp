@@ -12,7 +12,6 @@
 size = Vector2(24, 26)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "attack_component")]
-collision_mask = 6
 script = ExtResource("1_0d1te")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
@@ -37,8 +36,7 @@ gravity_component = NodePath("../GravityComponent")
 [node name="JumpComponent" parent="." instance=ExtResource("6_t1ets")]
 
 [node name="AttackComponent" parent="." instance=ExtResource("7_uie5s")]
-collision_layer = 8
-collision_mask = 2
+active_len = 5.0
 
 [node name="LeftHitbox" parent="AttackComponent" index="0"]
 position = Vector2(-23, 0)

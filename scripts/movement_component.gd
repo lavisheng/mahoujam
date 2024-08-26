@@ -16,11 +16,14 @@ var homing_delta: float = 2.
 func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
 	if not gravity_component.is_falling:
 		body.velocity.x = direction * ground_speed
+		if direction != 0:
+			body.facing_right = direction > 0
 
 
 func handle_air_dash(body: CharacterBody2D, direction: float, delta: float) -> void:
 	if not body.is_on_floor() and direction != 0 and num_airdashes > 0:
 		body.velocity.x = direction * air_speed
+		body.facing_right = direction > 0
 		gravity_component.airdash = true
 		body.velocity.y = 0
 		num_airdashes -= 1

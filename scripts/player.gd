@@ -5,10 +5,12 @@ extends CharacterBody2D
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
 @export var jump_component: JumpComponent
+@export var attack_component: AttackComponent
+
 #@export var homing_target :     Node
 var bullets = 1
 var bullet = null
-
+var facing_right = true
 
 #var bullet
 func fire():
@@ -23,6 +25,7 @@ func _physics_process(delta):
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
 	movement_component.handle_air_dash(self, input_component.input_doubletap, delta)
+	attack_component.handle_attack(self, input_component.get_attack_input(), facing_right)
 	if input_component.get_fire_input():
 		fire()
 	if bullet != null:
