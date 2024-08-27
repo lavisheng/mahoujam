@@ -82,8 +82,3 @@ func SuitAbilityProcess(player: Player, delta: float):
         if player.input_component.get_special_input():
             bullets[shoot_index].fire_bullet()
             shoot_index += 1
-    # homing check
-    if player.input_component.get_fire_input():
-        FireDebugBullet(player)
-    if debug_bullet:
-        handle_homing_dash(player, debug_bullet.transform, delta)

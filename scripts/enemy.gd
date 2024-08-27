@@ -6,5 +6,5 @@ extends CharacterBody2D
 
 
 func _physics_process(delta):
-	gravity_component.handle_gravity(self, false, delta)
-	move_and_collide(self.velocity * delta)
+    gravity_component.handle_gravity(self, false, delta)
+    move_and_collide(self.velocity * delta)
