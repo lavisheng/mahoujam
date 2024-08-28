@@ -1,30 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn8aur8nq0xsw"]
+[gd_scene load_steps=8 format=4 uid="uid://dn8aur8nq0xsw"]
 
 [ext_resource type="Texture2D" uid="uid://b08cjm3xvoini" path="res://addons/godot-git-plugin/tiles.png" id="1_32xmr"]
+[ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_x8tse"]
+[ext_resource type="Resource" uid="uid://bcvwbkax8slcw" path="res://resource/suit_b_resource.tres" id="3_skxov"]
+[ext_resource type="Resource" uid="uid://62bnbohbk04s" path="res://resource/suit_a_resource.tres" id="4_ho2gr"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_e1kid"]
+tile_data = PackedInt32Array(65537, 327680, 5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1y2m1"]
 texture = ExtResource("1_32xmr")
-5:4/0 = 0
-4:4/0 = 0
-4:5/0 = 0
+texture_region_size = Vector2i(32, 32)
+use_texture_padding = false
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 5:5/0 = 0
-10:4/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-11:4/0 = 0
-4:10/0 = 0
-4:11/0 = 0
-5:11/0 = 0
-5:10/0 = 0
-10:11/0 = 0
-11:11/0 = 0
-11:10/0 = 0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, -16, 16, 16)
+2:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_su7mg"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 6
 sources/0 = SubResource("TileSetAtlasSource_1y2m1")
+pattern_0 = SubResource("TileMapPattern_e1kid")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-26, -2)
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAACAAIAAAACAAAAAAACAAIAAAADAAAAAAACAAIAAAAEAAAAAAACAAIAAAD//wAAAAAFAAIAAAD/////AAAFAAIAAAD///7/AAAFAAIAAAD///3/AAAFAAIAAAD///z/AAAFAAIAAAD///v/AAAFAAIAAAAAAPv/AAACAAIAAAABAPv/AAACAAIAAAACAPv/AAACAAIAAAADAPv/AAACAAIAAAAEAPv/AAACAAIAAAAEAPz/AAACAAUAAAAEAP3/AAACAAUAAAAEAP7/AAACAAUAAAAEAP//AAACAAUAAAAGAP//AAACAAUAAAAFAP7/AAACAAUAAAAFAP//AAACAAUAAAAFAP3/AAACAAUAAAAFAPz/AAACAAUAAAAGAPz/AAACAAUAAAAGAP3/AAACAAUAAAAGAP7/AAACAAUAAAAFAAAAAAACAAIAAAAGAAAAAAACAAIAAAAHAAAAAAACAAIAAAAFAPv/AAACAAIAAAAGAPv/AAACAAIAAAAHAPv/AAACAAIAAAAIAAAAAAACAAIAAAAJAAAAAAACAAIAAAAIAPv/AAACAAIAAAAJAPv/AAACAAIAAAAKAP//AAAFAAUAAAALAP7/AAAFAAUAAAAMAP3/AAAFAAUAAAANAPz/AAAFAAUAAAAKAAAAAAACAAIAAAAMAAAAAAACAAIAAAANAAAAAAACAAIAAAALAAAAAAACAAIAAAALAP//AAACAAIAAAANAP//AAACAAIAAAAMAP//AAACAAIAAAAMAP7/AAACAAIAAAANAP7/AAACAAIAAAANAP3/AAACAAIAAAAJAPr/AAAFAAIAAAAJAPn/AAAFAAIAAAAJAPj/AAAFAAIAAAAOAPz/AAACAAIAAAAPAPz/AAACAAIAAAAQAPz/AAACAAIAAAARAPz/AAACAAIAAAASAPz/AAAFAAIAAAASAP7/AAAFAAIAAAASAP3/AAAFAAIAAAASAP//AAAFAAIAAAASAAAAAAAFAAIAAAATAAAAAAACAAIAAAAUAAAAAAACAAIAAAAVAAAAAAACAAIAAAAXAAAAAAACAAIAAAAWAAAAAAACAAIAAAAYAAAAAAACAAIAAAAJAPf/AAAFAAIAAAAJAPX/AAAFAAIAAAAJAPb/AAAFAAIAAAAKAPX/AAACAAIAAAALAPX/AAACAAIAAAAMAPX/AAACAAIAAAAOAPX/AAACAAIAAAAQAPX/AAACAAIAAAASAPX/AAACAAIAAAATAPX/AAACAAIAAAANAPX/AAACAAIAAAAPAPX/AAACAAIAAAARAPX/AAACAAIAAAAUAPX/AAACAAIAAAAVAPX/AAACAAIAAAAYAPv/AAAFAAUAAFAZAPz/AAAFAAUAAFAaAP3/AAAFAAUAAFAbAP7/AAAFAAUAAFAZAAAAAAACAAIAAAAaAAAAAAACAAIAAAAbAAAAAAACAAIAAAAbAAEAAAACAAIAAAAcAAEAAAACAAIAAAAcAAAAAAACAAIAAAAdAAAAAAACAAIAAAAXAPv/AAAFAAIAAAAXAPz/AAAFAAIAAAAXAP3/AAAFAAIAAAAXAP7/AAAFAAIAAAAaAP7/AAACAAIAAAAZAP7/AAACAAIAAAAYAP7/AAACAAIAAAAWAPX/AAACAAIAAAAXAPX/AAACAAIAAAAYAPX/AAACAAIAAAAZAPX/AAACAAIAAAAaAPX/AAACAAIAAAAeAAAAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_su7mg")
 collision_visibility_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_x8tse")]
+position = Vector2(50, -21)
+collision_mask = 22
+active_suit = ExtResource("3_skxov")
+inactive_suit = ExtResource("4_ho2gr")
+
+[node name="AttackComponent" parent="Player" index="6"]
+collision_mask = 31
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[connection signal="body_entered" from="Player/AttackComponent" to="Player/AttackComponent" method="_on_body_entered"]
+
+[editable path="Player"]
+[editable path="Player/AttackComponent"]
