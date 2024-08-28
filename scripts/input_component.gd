@@ -6,26 +6,38 @@ const DOUBLETAP_DELAY = .25
 var doubletap_time = DOUBLETAP_DELAY
 var last_action = ""
 var input_doubletap: float = 0.0
+var mouse_position: Vector2 = Vector2(0, 0)
 
 
 func _input(event):
-	if event is InputEventKey and event.is_pressed():
-		for e in [[&"move_left", -1], [&"move_right", 1]]:
-			if Input.is_action_just_pressed(e[0]):
-				input_horizontal = e[1]
-				if last_action == e[0] && doubletap_time > 0:
-					input_doubletap = e[1]
-				else:
-					last_action = e[0]
-					input_doubletap = 0
-		doubletap_time = DOUBLETAP_DELAY
-	elif event.is_released():
-		if not Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
-			input_horizontal = 0
-		elif Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
-			input_horizontal = -1
-		elif not Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):
-			input_horizontal = 1
+	if event is InputEventKey:
+		if event.is_pressed():
+			for e in [[&"move_left", -1], [&"move_right", 1]]:
+				if Input.is_action_just_pressed(e[0]):
+					input_horizontal = e[1]
+					if last_action == e[0] && doubletap_time > 0:
+						input_doubletap = e[1]
+					else:
+						last_action = e[0]
+						input_doubletap = 0
+						doubletap_time = DOUBLETAP_DELAY
+		elif event.is_released():
+			if (
+				not Input.is_action_pressed("move_left")
+				and not Input.is_action_pressed("move_right")
+			):
+				input_horizontal = 0
+			elif Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
+				input_horizontal = -1
+			elif not Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):
+				input_horizontal = 1
+	elif event is InputEventMouseButton:
+		mouse_position = event.position
+		print("Mouse Motion at: ", event.position)
+
+
+func GetMousePosition() -> Vector2:
+	return mouse_position
 
 
 func _process(delta: float) -> void:

@@ -37,10 +37,8 @@ func SuitAbilityCallback(player: Player):
                 player.transform.get_origin() + OFFSET[i]
             )
             player.get_parent().add_child(bullets[i])
+            bullets[i].SetDirection(player.facing_right)
         player.velocity = Vector2(0, 0)
-    #do a giga jump ( of hell )
-    #if wantInput and body.is_on_floor():
-    #    body.velocity.y = giga_jump_vel
 
 func handle_homing_dash(
     player: Player, target: Transform2D, delta: float) -> void:
@@ -69,6 +67,7 @@ func handle_homing_dash(
     else:
         homing_delta = 2.
         air_movement = false
+
 func landed(body: CharacterBody2D) -> void:
     if body.is_on_floor():
         air_movement = false
@@ -80,5 +79,5 @@ func SuitAbilityProcess(player: Player, delta: float):
         hover_time -= delta
         player.velocity.y = 0
         if player.input_component.get_special_input():
-            bullets[shoot_index].fire_bullet()
+            bullets[shoot_index].fire_bullet(player.input_component.GetMousePosition())
             shoot_index += 1
