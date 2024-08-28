@@ -1,5 +1,8 @@
 class_name SuitABullet
 extends Area2D
+
+signal hit_target
+
 var travel_max_speed: float = 1000
 var fire: bool = false
 const TRAVEL_TIME = 1.
@@ -9,6 +12,7 @@ var target: Vector2 = Vector2(0, 0)
 var target_angle: float = 0.
 var angle: float = 0.
 var initial_angle: float = 0.
+var hit_transform = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -53,7 +57,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D):
-	print("COLLIDE")
+	hit_transform = body.transform
+	hit_target.emit(body.transform)
 
 
 func fire_bullet(aim: Vector2) -> void:

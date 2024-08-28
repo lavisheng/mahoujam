@@ -13,18 +13,8 @@ const HOVER_TIME = 4.
 @export var hover_time: float = 0.0
 const OFFSET = [Vector2(-17, 0), Vector2(0, -17), Vector2(17, 0)]
 var bullets = [-1, -1, -1]
-var shoot_index = 3
-# DEBUG FOR HOMING YET TO BE IMPLEMENTED WITH THE FULL TARGETING SYSTEM
-# FOR THIS SUIT'S SPECIAL
-var debug_bullets = 1
-var debug_bullet = null
-
-func FireDebugBullet(body: CharacterBody2D):
-    if debug_bullets > 0:
-        debug_bullet = load("res://scenes/player_bullet.tscn").instantiate()
-        debug_bullet.transform = debug_bullet.transform.translated(body.transform.get_origin())
-        body.get_parent().add_child(debug_bullet)
-        debug_bullets -= 1
+var shoot_index: int= 3
+var homing_target = null
 
 func SuitAbilityCallback(player: Player):
     if player.input_component.get_special_input() and not player.is_on_floor() and shoot_index == 3:
@@ -38,8 +28,13 @@ func SuitAbilityCallback(player: Player):
             )
             player.get_parent().add_child(bullets[i])
             bullets[i].SetDirection(player.facing_right)
+            bullets[i].hit_target.connect(AssignHomingTarget)
         player.velocity = Vector2(0, 0)
 
+func AssignHomingTarget(hit_target: Transform2D) -> void:
+    homing_target = hit_target
+    print("HI %s" % homing_target.origin)
+                
 func handle_homing_dash(
     player: Player, target: Transform2D, delta: float) -> void:
     if (
@@ -51,9 +46,11 @@ func handle_homing_dash(
         print("HOMING")
         air_movement = true
         num_homing -= 1
+        while shoot_index < 3:
+            bullets[shoot_index].queue_free()
+            shoot_index += 1
     if (
         air_movement
-        and debug_bullet
         and player.transform.get_origin().distance_to(target.get_origin()) < 1
     ):
         player.velocity = Vector2(0, 0)
@@ -81,3 +78,5 @@ func SuitAbilityProcess(player: Player, delta: float):
         if player.input_component.get_special_input():
             bullets[shoot_index].fire_bullet(player.input_component.GetMousePosition())
             shoot_index += 1
+    if homing_target != null:
+        handle_homing_dash(player, homing_target, delta)
