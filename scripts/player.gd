@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var suit_component: SuitComponent
 @export var attack_component: AttackComponent
-
+@export var health_component: HealthComponent
 #@export var homing_target :     Node
 @export var active_suit: SuitData
 @export var inactive_suit: SuitData
