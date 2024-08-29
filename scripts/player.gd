@@ -46,3 +46,5 @@ func _physics_process(delta):
 	input_component.input_doubletap = 0
 	attack_component.handle_attack(self, input_component.get_attack_input(), facing_right)
 	move_and_slide()
+	if get_slide_collision_count() > 0:
+		suit_component.CollideSuit(self, active_suit)

@@ -17,3 +17,6 @@ func SuitAbilityCallback(player: Player):
 
 func SuitAbilityProcess(player: Player, delta: float):
     pass
+
+func SuitCollisionCallback(player: Player):
+    pass

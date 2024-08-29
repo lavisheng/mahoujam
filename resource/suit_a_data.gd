@@ -31,6 +31,10 @@ func SuitAbilityCallback(player: Player):
             bullets[i].hit_target.connect(AssignHomingTarget)
         player.velocity = Vector2(0, 0)
 
+func SuitCollisionCallback(player: Player) -> void:
+    # if collide with anything turn off the air movement
+    air_movement = false
+
 func AssignHomingTarget(hit_target: Transform2D) -> void:
     homing_target = hit_target
     print("HI %s" % homing_target.origin)
