@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 
 
 func fire(proj: Node2D, target: Vector2, callable: Callable) -> void:
+	fired = true
 	travel_func = callable
 	target_loc = target
 	projectile = proj

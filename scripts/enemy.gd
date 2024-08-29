@@ -12,6 +12,6 @@ func _physics_process(delta):
     cooldown -= delta
     if cooldown < 0:
         cooldown = 1.
-		var test_proj_func = func(projectile: Node2D, _target: Vector2, d: float):
+        var test_proj_func = func(projectile: Node2D, _target: Vector2, d: float):
             projectile.position.x += 100 * d
-        projectile_fc_component.fire(self, Vector2(1,0), Vector2(2,0), test_proj_func)
+        projectile_fc_component.fire(self, Vector2(1,0), Vector2(10,0), test_proj_func)
