@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b41666d0edicl"]
+
+[ext_resource type="Script" path="res://scripts/projectile_test.gd" id="1_drv0p"]
+[ext_resource type="PackedScene" uid="uid://cvddvar0b0sic" path="res://scenes/components/enemy_projectile_component.tscn" id="1_o5oho"]
+[ext_resource type="Texture2D" uid="uid://dftae85jdyurn" path="res://assets/placeholderE.png" id="2_cwjx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orsiy"]
+size = Vector2(48, 36)
+
+[node name="ProjectileTest" type="Area2D" node_paths=PackedStringArray("enemy_projectile_component")]
+script = ExtResource("1_drv0p")
+enemy_projectile_component = NodePath("EnemyProjectileComponent")
+
+[node name="EnemyProjectileComponent" parent="." instance=ExtResource("1_o5oho")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_cwjx2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_orsiy")
