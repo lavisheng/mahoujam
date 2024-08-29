@@ -4,7 +4,7 @@ extends Node2D
 @export_subgroup("Settings")
 @export var ground_speed: float = 100
 @export var held_jump_time: float = 0.2
-@export var jump_velocity: float = -250.0
+@export var jump_velocity: float = -350.0
 var is_jumping: bool = false
 var jump_held: float = 0
 
