@@ -9,6 +9,10 @@ func ProcessPower(player: Player, suit: SuitData, delta: float) -> void:
     suit.SuitAbilityProcess(player, delta)
 
 
+func CollideSuit(player: Player, suit: SuitData) -> void:
+    suit.SuitCollisionCallback(player)
+
+
 func ProcessSuitSwap(
     body: Player, primarySuit: SuitData, secondarySuit: SuitData, inputPressed: bool
 ) -> void:
