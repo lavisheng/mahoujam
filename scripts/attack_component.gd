@@ -16,27 +16,27 @@ var is_attacking: bool = false
 var attack_delta: float = 0.
 
 
-func handle_attack(body: CharacterBody2D, want_to_attack: bool, facing_right: bool) -> void:
-    if not want_to_attack:
-        return
-    if is_attacking or (attacker.hitstop_delta > 0):
-        return
-    is_attacking = true
-    attack_delta = active_len
-    right_hitbox.disabled = !facing_right
-    left_hitbox.disabled = facing_right
+func HandleAttack(body: CharacterBody2D, want_to_attack: bool, facing_right: bool) -> void:
+	if not want_to_attack:
+		return
+	if is_attacking or (attacker.hitstop_delta > 0):
+		return
+	is_attacking = true
+	attack_delta = active_len
+	right_hitbox.disabled = !facing_right
+	left_hitbox.disabled = facing_right
 
 
 func _physics_process(delta: float):
-    attack_delta = clamp(attack_delta - delta, 0, active_len)
-    if is_attacking and (attack_delta <= 0):
-        right_hitbox.disabled = true
-        left_hitbox.disabled = true
+	attack_delta = clamp(attack_delta - delta, 0, active_len)
+	if is_attacking and (attack_delta <= 0):
+		right_hitbox.disabled = true
+		left_hitbox.disabled = true
 
-    is_attacking = attack_delta > 0
+	is_attacking = attack_delta > 0
 
 
 func _on_body_entered(body):
-    body.handle_attack(damage)
-    body.hitstop_delta = hitstop
-    attacker.hitstop_delta = hitstop
+	body.HandleAttack(damage)
+	body.hitstop_delta = hitstop
+	attacker.hitstop_delta = hitstop

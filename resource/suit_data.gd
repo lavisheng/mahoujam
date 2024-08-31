@@ -13,10 +13,12 @@ class_name SuitData
 
 
 func SuitAbilityCallback(player: Player):
-    pass
+	pass
+
 
 func SuitAbilityProcess(player: Player, delta: float):
-    pass
+	pass
+
 
 func SuitCollisionCallback(player: Player):
-    pass
+	pass

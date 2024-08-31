@@ -9,36 +9,36 @@ var is_jumping: bool = false
 var jump_held: float = 0
 
 
-func handle_jump(body: CharacterBody2D, want_to_jump: bool, modifier: float, delta: float) -> void:
-    if want_to_jump and body.is_on_floor():
-        body.velocity.y = jump_velocity * modifier
-        jump_held = held_jump_time
-    elif want_to_jump and jump_held > 0:
-        jump_held -= delta
-        body.velocity.y = jump_velocity * modifier
-    elif not body.is_on_floor():
-        jump_held = -1
-    is_jumping = body.velocity.y < 0 and not body.is_on_floor()
+func HandleJump(body: CharacterBody2D, want_to_jump: bool, modifier: float, delta: float) -> void:
+	if want_to_jump and body.is_on_floor():
+		body.velocity.y = jump_velocity * modifier
+		jump_held = held_jump_time
+	elif want_to_jump and jump_held > 0:
+		jump_held -= delta
+		body.velocity.y = jump_velocity * modifier
+	elif not body.is_on_floor():
+		jump_held = -1
+	is_jumping = body.velocity.y < 0 and not body.is_on_floor()
 
 
-func handle_horizontal_movement(
-    body: CharacterBody2D, direction: float, speedDelta: float, multiplier: float
+func HandleHorizontalMovement(
+	body: CharacterBody2D, direction: float, speedDelta: float, multiplier: float
 ) -> void:
-    if not gravity_component.is_falling:
-        body.velocity.x = direction * (ground_speed + speedDelta) * multiplier
-        if direction:
-            body.facing_right = sign(direction) == 1
+	if not gravity_component.is_falling:
+		body.velocity.x = direction * (ground_speed + speedDelta) * multiplier
+		if direction:
+			body.facing_right = sign(direction) == 1
 
 
-func handle_air_movement(
-    body: CharacterBody2D, direction: float, speedDelta: float, multiplier: float
+func HandleAirMovement(
+	body: CharacterBody2D, direction: float, speedDelta: float, multiplier: float
 ) -> void:
-    if gravity_component.is_falling:
-        body.velocity.x = direction * (ground_speed + speedDelta) * multiplier
-        if direction:
-            body.facing_right = sign(direction) == 1
+	if gravity_component.is_falling:
+		body.velocity.x = direction * (ground_speed + speedDelta) * multiplier
+		if direction:
+			body.facing_right = sign(direction) == 1
 
 
-func landed(body: CharacterBody2D) -> void:
-    if body.is_on_floor():
-        body.transform = body.transform.looking_at(body.transform.get_origin() + Vector2(1.0, 0.0))
+func Landed(body: CharacterBody2D) -> void:
+	if body.is_on_floor():
+		body.transform = body.transform.looking_at(body.transform.get_origin() + Vector2(1.0, 0.0))

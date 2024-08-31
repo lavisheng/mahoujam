@@ -42,7 +42,7 @@ jumpPowerMultiplier = 0.0
 air_movement = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
-size = Vector2(24, 26)
+size = Vector2(24, 60)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component", "attack_component", "health_component")]
 collision_layer = 5
@@ -58,7 +58,7 @@ active_suit = SubResource("Resource_kjec6")
 inactive_suit = SubResource("Resource_nhx6o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.25, 0.615)
 texture = ExtResource("1_ndvjg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
