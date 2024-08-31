@@ -39,6 +39,7 @@ func _input(event):
 func GetMousePosition() -> Vector2:
 	return mouse_position
 
+
 func _process(delta: float) -> void:
 	doubletap_time -= delta
 	#var axis = Input.get_axis("move_left", "move_right")
@@ -62,6 +63,7 @@ func GetSwapInput() -> bool:
 
 func GetAttackInput() -> bool:
 	return Input.is_action_just_pressed("attack")
+
 
 func GetDebugInput() -> bool:
 	return Input.is_action_just_pressed("debug_combo")

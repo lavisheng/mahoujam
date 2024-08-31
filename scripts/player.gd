@@ -31,17 +31,17 @@ func _physics_process(delta):
 	movement_component.HandleHorizontalMovement(
 		self,
 		input_component.input_horizontal,
-		active_suit.landSpeedDelta,
-		active_suit.landSpeedMultiplier
+		active_suit.land_speed_delta,
+		active_suit.land_speed_multiplier
 	)
 	movement_component.HandleAirMovement(
 		self,
 		input_component.input_horizontal,
-		active_suit.airSpeedDelta,
-		active_suit.airSpeedMultiplier
+		active_suit.air_speed_delta,
+		active_suit.air_speed_multiplier
 	)
 	movement_component.HandleJump(
-		self, input_component.GetJumpInput(), active_suit.jumpPowerMultiplier, delta
+		self, input_component.GetJumpInput(), active_suit.jump_power_multiplier, delta
 	)
 	movement_component.Landed(self)
 	suit_component.ActivatePower(self, active_suit)

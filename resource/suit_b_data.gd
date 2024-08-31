@@ -47,7 +47,7 @@ func HandleDoubleJump(player: Player) -> void:
 		and num_airdashes > 0
 	):
 		num_airdashes -= 1
-		player.velocity.y = jump_velocity * jumpPowerMultiplier
+		player.velocity.y = jump_velocity * jump_power_multiplier
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
