@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dggrw0wxguj32"]
+[gd_scene load_steps=15 format=3 uid="uid://dggrw0wxguj32"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
 [ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_ndvjg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/suit_component.gd" id="7_2cdo8"]
 [ext_resource type="PackedScene" uid="uid://crtqh7b1jsjy" path="res://scenes/components/attack_component.tscn" id="7_uie5s"]
 [ext_resource type="PackedScene" uid="uid://y4d73mhbst55" path="res://scenes/components/health_component.tscn" id="10_cuyes"]
+[ext_resource type="PackedScene" uid="uid://d01m1sed0d54l" path="res://scenes/components/debug_component.tscn" id="10_1rs6k"]
 
 [sub_resource type="Resource" id="Resource_kjec6"]
 script = ExtResource("2_px7l7")
@@ -44,7 +45,7 @@ air_movement = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
 size = Vector2(24, 60)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component", "attack_component", "health_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component", "attack_component", "health_component", "debugComponent")]
 collision_layer = 5
 collision_mask = 6
 script = ExtResource("1_0d1te")
@@ -54,6 +55,7 @@ movement_component = NodePath("MovementComponent")
 suit_component = NodePath("SuitComponent")
 attack_component = NodePath("AttackComponent")
 health_component = NodePath("HealthComponent")
+debugComponent = NodePath("DebugComponent")
 active_suit = SubResource("Resource_kjec6")
 inactive_suit = SubResource("Resource_nhx6o")
 
@@ -86,5 +88,7 @@ position = Vector2(23, 0)
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_cuyes")]
 max_health = 15
+
+[node name="DebugComponent" parent="." instance=ExtResource("10_1rs6k")]
 
 [editable path="AttackComponent"]

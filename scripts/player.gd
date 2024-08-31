@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var suit_component: SuitComponent
 @export var attack_component: AttackComponent
 @export var health_component: HealthComponent
+@export var debugComponent: DebugComponent
+
 #@export var homing_target :     Node
 @export var active_suit: SuitData
 @export var inactive_suit: SuitData
@@ -50,3 +52,4 @@ func _physics_process(delta):
 	move_and_slide()
 	if get_slide_collision_count() > 0:
 		suit_component.CollideSuit(self, active_suit)
+	debugComponent.DebugCombo(input_component.GetDebugInput())

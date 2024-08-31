@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://wtq2i2jnibbo"]
+
+[ext_resource type="Script" path="res://scripts/UI/player_hud.gd" id="1_gvid4"]
+
+[node name="Player_HUD" type="Control" node_paths=PackedStringArray("statusText", "comboCtr")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gvid4")
+statusText = NodePath("ComboZone/ComboSpice")
+comboCtr = NodePath("ComboZone/ComboCtr")
+
+[node name="ComboZone" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 163.0
+
+[node name="ComboID" type="RichTextLabel" parent="ComboZone"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 63.0
+offset_right = 85.0
+offset_bottom = 103.0
+text = "COMBO"
+
+[node name="ComboCtr" type="RichTextLabel" parent="ComboZone"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 64.0
+offset_right = 118.0
+offset_bottom = 104.0
+text = "0"
+
+[node name="ComboSpice" type="RichTextLabel" parent="ComboZone"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 84.0
+offset_bottom = 30.0
