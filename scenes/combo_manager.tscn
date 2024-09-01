@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=3 uid="uid://d8bfkwm5gfdx"]
+
+[ext_resource type="Script" path="res://scripts/combo_manager.gd" id="1_y3msp"]
+[ext_resource type="Script" path="res://resource/combo/combo_data.gd" id="2_7rlwp"]
+[ext_resource type="Resource" uid="uid://bharhtxsesc8n" path="res://resource/combo/Combo1.tres" id="3_t3d0l"]
+[ext_resource type="Resource" uid="uid://sl24jqf82rrp" path="res://resource/combo/Combo2.tres" id="4_fsbfd"]
+[ext_resource type="Resource" uid="uid://o1ceako0q16k" path="res://resource/combo/Combo3.tres" id="5_7h3vs"]
+
+[node name="ComboManager" type="Node2D"]
+script = ExtResource("1_y3msp")
+combo_array = Array[ExtResource("2_7rlwp")]([ExtResource("3_t3d0l"), ExtResource("4_fsbfd"), ExtResource("5_7h3vs")])

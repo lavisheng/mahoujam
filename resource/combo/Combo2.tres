@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ComboData" load_steps=2 format=3 uid="uid://sl24jqf82rrp"]
+
+[ext_resource type="Script" path="res://resource/combo/combo_data.gd" id="1_q0mbt"]
+
+[resource]
+script = ExtResource("1_q0mbt")
+comboIdentifier = "Good"
+comboFloor = 8

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://caics714qast6"]
+
+[ext_resource type="PackedScene" uid="uid://y4d73mhbst55" path="res://scenes/components/health_component.tscn" id="1_veo80"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_vfx0v"]
+[ext_resource type="PackedScene" uid="uid://jmetw2b5l285" path="res://scenes/components/enemy_projectile_fire_control_component.tscn" id="2_c4xe0"]
+[ext_resource type="Texture2D" uid="uid://crni000puqcvu" path="res://assets/placeholderD.png" id="2_qwc5j"]
+[ext_resource type="Script" path="res://scripts/gravity_component.gd" id="4_qfw8n"]
+[ext_resource type="PackedScene" uid="uid://bcx2riapirjvu" path="res://scenes/components/enemy_gravity_component.tscn" id="6_2ggy5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4arhs"]
+size = Vector2(24, 24)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy_gravity_component", "health_component", "projectile_fc_component")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_vfx0v")
+enemy_gravity_component = NodePath("GravityComponent3")
+health_component = NodePath("HealthComponent")
+projectile_fc_component = NodePath("EnemyProjectileFireControlComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_veo80")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_qwc5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_4arhs")
+
+[node name="GravityComponent" type="Node2D" parent="."]
+script = ExtResource("4_qfw8n")
+
+[node name="EnemyProjectileFireControlComponent" parent="." instance=ExtResource("2_c4xe0")]
+projectile_path = "res://scenes/projectile_test.tscn"
+
+[node name="GravityComponent3" parent="." instance=ExtResource("6_2ggy5")]

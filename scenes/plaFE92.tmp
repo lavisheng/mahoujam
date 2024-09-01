@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://dggrw0wxguj32"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
+[ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_ndvjg"]
+[ext_resource type="PackedScene" uid="uid://bcr4mxjnmm2dd" path="res://scenes/components/gravity_component.tscn" id="3_ai6lb"]
+[ext_resource type="PackedScene" uid="uid://ckihlbjdqjs2q" path="res://scenes/components/input_component.tscn" id="4_akang"]
+[ext_resource type="PackedScene" uid="uid://bmyqf2bljkqnx" path="res://scenes/components/movement_component.tscn" id="5_i6bpe"]
+[ext_resource type="PackedScene" uid="uid://bhd6skoip0ljw" path="res://scenes/components/jump_component.tscn" id="6_t1ets"]
+[ext_resource type="PackedScene" uid="uid://crtqh7b1jsjy" path="res://scenes/components/attack_component.tscn" id="7_uie5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
+size = Vector2(24, 26)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "attack_component")]
+script = ExtResource("1_0d1te")
+gravity_component = NodePath("GravityComponent")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+jump_component = NodePath("JumpComponent")
+attack_component = NodePath("AttackComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ndvjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vf57v")
+
+[node name="GravityComponent" parent="." instance=ExtResource("3_ai6lb")]
+
+[node name="InputComponent" parent="." instance=ExtResource("4_akang")]
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("gravity_component") instance=ExtResource("5_i6bpe")]
+gravity_component = NodePath("../GravityComponent")
+
+[node name="JumpComponent" parent="." instance=ExtResource("6_t1ets")]
+
+[node name="AttackComponent" parent="." instance=ExtResource("7_uie5s")]
+
+[node name="LeftHitbox" parent="AttackComponent" index="0"]
+position = Vector2(-23, 0)
+
+[node name="RightHitbox" parent="AttackComponent" index="1"]
+position = Vector2(23, 0)
+
+[editable path="AttackComponent"]
