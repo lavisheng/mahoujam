@@ -24,9 +24,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-	hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
-	if hitstop_delta > 0:
+	if attack_component.curr.state <= Global.MOVE_STATE.active:
 		return
+	#hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
+	#if hitstop_delta > 0:
+	#	return
 	gravity_component.HandleGravity(self, active_suit.air_movement, delta)
 	movement_component.HandleHorizontalMovement(
 		self,

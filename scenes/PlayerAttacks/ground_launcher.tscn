@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsvtsb4bak8pt"]
+
+[ext_resource type="Script" path="res://scripts/PlayerAttacks/ground_launcher.gd" id="1_isn63"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et5g7"]
+size = Vector2(40, 42)
+
+[node name="GroundLauncher" type="Area2D" node_paths=PackedStringArray("hitbox")]
+collision_mask = 2
+script = ExtResource("1_isn63")
+startup_frames = 6
+active_frames = 8
+recovery_frames = 4
+hitbox = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_et5g7")
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
