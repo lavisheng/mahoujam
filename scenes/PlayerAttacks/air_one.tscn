@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyjrvchr5vx5t"]
+
+[ext_resource type="Script" path="res://scripts/PlayerAttacks/air_one.gd" id="1_1e0cn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et5g7"]
+size = Vector2(14, 53.75)
+
+[node name="air_one" type="Area2D" node_paths=PackedStringArray("hitbox")]
+collision_mask = 2
+script = ExtResource("1_1e0cn")
+startup_frames = 8
+active_frames = 4
+recovery_frames = 20
+hitbox = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_et5g7")
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

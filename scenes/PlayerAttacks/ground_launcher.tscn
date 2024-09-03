@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/PlayerAttacks/ground_launcher.gd" id="1_isn63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_et5g7"]
-size = Vector2(40, 42)
+size = Vector2(24, 42)
 
 [node name="GroundLauncher" type="Area2D" node_paths=PackedStringArray("hitbox")]
 collision_mask = 2

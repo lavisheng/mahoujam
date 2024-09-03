@@ -11,6 +11,11 @@ class_name SuitData
 @export var jump_power_multiplier: float
 @export var air_movement: bool
 
+#@export_group("Moves")
+#@export var ground_attack: PlayerAttackBase
+#@export var air_one_attack: PlayerAttackBase
+#@export var air_two_attack: PlayerAttackBase
+
 
 func SuitAbilityCallback(player: Player):
 	pass

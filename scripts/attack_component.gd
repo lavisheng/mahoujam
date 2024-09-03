@@ -25,14 +25,25 @@ var attack_delta: float = 0.
 var timer: float = 0.
 
 
-func HandleAttack(body: CharacterBody2D, want_to_attack: bool, facing_right: bool) -> void:
-	if want_to_attack and curr.state == Global.MOVE_STATE.rest:
+func HandleAttack(player: Player) -> void:
+	if curr.state == Global.MOVE_STATE.rest:
 		print("lol state")
 		# todo: select curr correctly
-		if body.is_on_floor():
+		if player.is_on_floor():
 			curr = ground_launch
+		#elif curr == air_one and curr.state == Global.MOVE_STATE.recovery:
+		#	curr = air_two
+		else:
+			curr = air_one
+		curr.SetOrientation(player.facing_right)
 		curr.state = Global.MOVE_STATE.startup
 		timer = 0.
+	elif curr.state >= Global.MOVE_STATE.recovery:
+		if curr == air_one:
+			curr = air_two
+			curr.SetOrientation(player.facing_right)
+			curr.state = Global.MOVE_STATE.startup
+			timer = 0.
 
 	#if is_attacking or (attacker.hitstop_delta > 0):
 	#	return

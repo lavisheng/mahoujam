@@ -21,9 +21,17 @@ var hitstop_delta: float = 0.
 
 func _ready() -> void:
 	modulate = inactive_suit.suitColor
+	input_component.attack_signal.connect(HandleAttackCallback)
+
+
+# for signal purposes
+func HandleAttackCallback() -> void:
+	print("Attack Signal Received")
+	attack_component.HandleAttack(self)
 
 
 func _physics_process(delta):
+	#attack_component.HandleAttack(self, input_component.GetAttackInput(), facing_right)
 	if attack_component.curr.state <= Global.MOVE_STATE.active:
 		return
 	#hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
@@ -50,7 +58,6 @@ func _physics_process(delta):
 	suit_component.ProcessPower(self, active_suit, delta)
 	suit_component.ProcessSuitSwap(self, active_suit, inactive_suit, input_component.GetSwapInput())
 	input_component.input_doubletap = 0
-	attack_component.HandleAttack(self, input_component.GetAttackInput(), facing_right)
 	move_and_slide()
 	if get_slide_collision_count() > 0:
 		suit_component.CollideSuit(self, active_suit)
