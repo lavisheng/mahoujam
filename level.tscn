@@ -43,7 +43,7 @@ inactive_suit = ExtResource("4_ho2gr")
 [node name="AttackComponent" parent="Player" index="6"]
 collision_mask = 31
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 limit_left = -55
 limit_top = -550
 limit_right = 2270
