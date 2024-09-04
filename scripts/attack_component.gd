@@ -27,8 +27,6 @@ var timer: float = 0.
 
 func HandleAttack(player: Player) -> void:
 	if curr.state == Global.MOVE_STATE.rest:
-		print("lol state")
-		# todo: select curr correctly
 		if player.is_on_floor():
 			curr = ground_launch
 		#elif curr == air_one and curr.state == Global.MOVE_STATE.recovery:

@@ -13,6 +13,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	body.health_component.TakeDamage(4)
+	body.health_component.TakeDamage(0)
 	print("HIT")
 	queue_free()

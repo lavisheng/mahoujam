@@ -7,6 +7,8 @@ const FRAME = 1. / 60.
 @export var active_frames: int = 0
 @export var recovery_frames: int = 0
 @export var cancellable: bool = true
+@export var damage: int = 2
+@export var vertical_velocity: float = 0.  # launch velocity/juggle
 @export_subgroup("Nodes")
 @export var hitbox: CollisionShape2D
 
@@ -60,3 +62,7 @@ func HandleState(timer: float) -> void:
 		hitbox.set_deferred("disabled", false)
 	else:
 		hitbox.set_deferred("disabled", true)
+
+
+func _on_body_entered(body):
+	body.HandleAttack(damage)

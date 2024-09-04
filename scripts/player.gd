@@ -32,7 +32,10 @@ func HandleAttackCallback() -> void:
 
 func _physics_process(delta):
 	#attack_component.HandleAttack(self, input_component.GetAttackInput(), facing_right)
-	if attack_component.curr.state <= Global.MOVE_STATE.active:
+	if (
+		not attack_component.curr.cancellable
+		and attack_component.curr.state <= Global.MOVE_STATE.active
+	):
 		return
 	#hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
 	#if hitstop_delta > 0:
