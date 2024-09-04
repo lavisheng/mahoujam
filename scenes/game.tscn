@@ -11,7 +11,7 @@
 [node name="Game" type="Node2D"]
 
 [node name="Enemy2" parent="." instance=ExtResource("4_a426q")]
-position = Vector2(411, 414)
+position = Vector2(410, 393)
 
 [node name="Platform" parent="." instance=ExtResource("1_as7qk")]
 position = Vector2(374, 438)
@@ -35,7 +35,7 @@ collision_mask = 31
 HUDListener = NodePath("../Player_HUD")
 
 [node name="Enemy" parent="." instance=ExtResource("4_a426q")]
-position = Vector2(364, 415)
+position = Vector2(364, 394)
 collision_mask = 12
 
 [node name="Player_HUD" parent="." node_paths=PackedStringArray("comboManagerNode") instance=ExtResource("7_d5yql")]
