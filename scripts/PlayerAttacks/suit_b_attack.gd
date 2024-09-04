@@ -1,5 +1,4 @@
-extends Area2D
-@export var enemy_projectile_component: EnemyProjectileComponent
+extends "res://scripts/PlayerAttacks/player_attack_base.gd"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_body_entered(body: Node2D) -> void:
-	body.health_component.TakeDamage(0)
-	print("HIT")
-	queue_free()
+func _on_body_entered(body):
+	body.HandleAttack(damage)

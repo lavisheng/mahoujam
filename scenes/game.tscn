@@ -10,17 +10,20 @@
 
 [node name="Game" type="Node2D"]
 
+[node name="Enemy2" parent="." instance=ExtResource("4_a426q")]
+position = Vector2(410, 393)
+
 [node name="Platform" parent="." instance=ExtResource("1_as7qk")]
-position = Vector2(183, 132)
+position = Vector2(374, 438)
 
 [node name="Platform" parent="Platform" instance=ExtResource("1_as7qk")]
-position = Vector2(173, -58)
+position = Vector2(228, -56)
 
 [node name="Platform" parent="Platform/Platform" instance=ExtResource("1_as7qk")]
 position = Vector2(67, -106)
 
 [node name="Player" parent="." instance=ExtResource("2_7eb8n")]
-position = Vector2(170, 27)
+position = Vector2(250, 397)
 collision_mask = 22
 active_suit = ExtResource("4_58l5r")
 inactive_suit = ExtResource("5_430nq")
@@ -28,12 +31,12 @@ inactive_suit = ExtResource("5_430nq")
 [node name="AttackComponent" parent="Player" index="6"]
 collision_mask = 31
 
-[node name="Enemy" parent="." instance=ExtResource("4_a426q")]
-position = Vector2(290, 66)
-collision_mask = 12
-
 [node name="ComboManager" parent="." node_paths=PackedStringArray("HUDListener") instance=ExtResource("6_6uumq")]
 HUDListener = NodePath("../Player_HUD")
+
+[node name="Enemy" parent="." instance=ExtResource("4_a426q")]
+position = Vector2(364, 394)
+collision_mask = 12
 
 [node name="Player_HUD" parent="." node_paths=PackedStringArray("comboManagerNode") instance=ExtResource("7_d5yql")]
 comboManagerNode = NodePath("../ComboManager")

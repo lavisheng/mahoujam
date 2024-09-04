@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dggrw0wxguj32"]
+[gd_scene load_steps=19 format=3 uid="uid://dggrw0wxguj32"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
 [ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_ndvjg"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://crtqh7b1jsjy" path="res://scenes/components/attack_component.tscn" id="7_uie5s"]
 [ext_resource type="PackedScene" uid="uid://d01m1sed0d54l" path="res://scenes/components/debug_component.tscn" id="10_1rs6k"]
 [ext_resource type="PackedScene" uid="uid://y4d73mhbst55" path="res://scenes/components/health_component.tscn" id="10_cuyes"]
+[ext_resource type="PackedScene" uid="uid://bsvtsb4bak8pt" path="res://scenes/PlayerAttacks/ground_launcher.tscn" id="10_e042t"]
+[ext_resource type="PackedScene" uid="uid://cyjrvchr5vx5t" path="res://scenes/PlayerAttacks/air_one.tscn" id="10_fevue"]
+[ext_resource type="PackedScene" uid="uid://dovp0ieycx7xr" path="res://scenes/PlayerAttacks/air_two.tscn" id="11_n6yt3"]
+[ext_resource type="PackedScene" uid="uid://bp80osalyhqsr" path="res://scenes/PlayerAttacks/suit_b_attack.tscn" id="13_deq7p"]
 
 [sub_resource type="Resource" id="Resource_kjec6"]
 script = ExtResource("2_px7l7")
@@ -18,6 +22,8 @@ airdash_delta = 0.75
 dash_speed = 2000.0
 jump_velocity = -250.0
 special_jump_velocity = -600.0
+special_dash_startup = 900.0
+special_dash_speed = 1000.0
 suitColor = Color(0, 0, 0, 1)
 name = ""
 air_speed_delta = 0
@@ -46,7 +52,7 @@ air_movement = false
 size = Vector2(24, 60)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component", "attack_component", "health_component", "debugComponent")]
-collision_layer = 5
+collision_layer = 7
 collision_mask = 6
 script = ExtResource("1_0d1te")
 gravity_component = NodePath("GravityComponent")
@@ -76,26 +82,29 @@ gravity_component = NodePath("../GravityComponent")
 [node name="SuitComponent" type="Node" parent="."]
 script = ExtResource("7_2cdo8")
 
-[node name="AttackComponent" parent="." instance=ExtResource("7_uie5s")]
+[node name="AttackComponent" parent="." node_paths=PackedStringArray("ground_launch", "air_one", "air_two", "suit_b_special") instance=ExtResource("7_uie5s")]
 collision_layer = 8
 collision_mask = 2
+ground_launch = NodePath("GroundLauncher")
+air_one = NodePath("air_one")
+air_two = NodePath("air_two")
+suit_b_special = NodePath("SuitBAttack")
 
-[node name="LeftHitbox" parent="AttackComponent" index="0"]
-position = Vector2(-23, 0)
+[node name="air_one" parent="AttackComponent" instance=ExtResource("10_fevue")]
+position = Vector2(20, -1)
 
-[node name="RightHitbox" parent="AttackComponent" index="1"]
-position = Vector2(23, 0)
+[node name="air_two" parent="AttackComponent" instance=ExtResource("11_n6yt3")]
+position = Vector2(31, 0)
+
+[node name="GroundLauncher" parent="AttackComponent" instance=ExtResource("10_e042t")]
+position = Vector2(25, 1)
+
+[node name="SuitBAttack" parent="AttackComponent" instance=ExtResource("13_deq7p")]
+position = Vector2(39.5, 1)
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_cuyes")]
 max_health = 15
 
 [node name="DebugComponent" parent="." instance=ExtResource("10_1rs6k")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = -55
-limit_top = -550
-limit_right = 2270
-limit_bottom = 750
-editor_draw_limits = true
 
 [editable path="AttackComponent"]

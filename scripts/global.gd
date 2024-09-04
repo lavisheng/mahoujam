@@ -1,5 +1,5 @@
-extends Area2D
-@export var enemy_projectile_component: EnemyProjectileComponent
+extends Node
+enum MOVE_STATE { startup, active, recovery, rest }
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,9 +10,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func _on_body_entered(body: Node2D) -> void:
-	body.health_component.TakeDamage(0)
-	print("HIT")
-	queue_free()
