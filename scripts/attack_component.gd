@@ -14,6 +14,7 @@ extends Node
 @export var ground_launch: PlayerAttackBase
 @export var air_one: PlayerAttackBase
 @export var air_two: PlayerAttackBase
+@export var suit_b_special: PlayerAttackBase
 
 var curr: PlayerAttackBase = PlayerAttackBase.new()
 
@@ -49,6 +50,16 @@ func HandleAttack(player: Player) -> void:
 	#attack_delta = active_len
 	#right_hitbox.disabled = !facing_right
 	#left_hitbox.disabled = facing_right
+
+
+func SuitBSpecial(orientation: bool) -> bool:
+	if curr.state == Global.MOVE_STATE.rest or curr.cancellable:
+		curr = suit_b_special
+		curr.SetOrientation(orientation)
+		curr.state = Global.MOVE_STATE.startup
+		timer = 0.
+		return true
+	return false
 
 
 func _physics_process(delta: float):

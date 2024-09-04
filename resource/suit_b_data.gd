@@ -9,6 +9,8 @@ var num_airdashes: int = NUM_AIRDASHES
 @export var dash_speed: float = 2000
 @export var jump_velocity: float = -250.0
 @export var special_jump_velocity: float = -600
+@export var special_dash_startup: float = 900
+@export var special_dash_speed: float = 1000
 
 var special_move: bool = false
 var special_roll_delta: float = 1.
@@ -19,11 +21,24 @@ func SuitAbilityCallback(player: Player) -> void:
 		player.gravity_component.is_falling
 		and player.input_component.GetSpecialInput()
 		and not air_movement
+		and player.attack_component.SuitBSpecial(player.facing_right)
 	):
-		player.velocity = Vector2(1, 1).limit_length(1.) * 1000
+		if player.facing_right:
+			player.velocity.x = special_dash_startup
+		else:
+			player.velocity.x = -1 * special_dash_startup
+		player.velocity.y = 0
 		air_movement = true
 		special_move = true
-		special_roll_delta = 2.
+	#if (
+	#	player.gravity_component.is_falling
+	#	and player.input_component.GetSpecialInput()
+	#	and not air_movement
+	#):
+	#	player.velocity = Vector2(1, 1).limit_length(1.) * 1000
+	#	air_movement = true
+	#	special_move = true
+	#	special_roll_delta = 2.
 
 
 func HandleAirDash(player: Player, direction: float, delta: float) -> void:
@@ -51,13 +66,16 @@ func HandleDoubleJump(player: Player) -> void:
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
-	if special_move and special_roll_delta > 0:
-		if player.is_on_floor():
-			special_roll_delta -= delta
-			player.velocity.x = 400
-			if player.input_component.GetJumpInput():
-				player.velocity.y = special_jump_velocity
-				special_move = false
+	if special_move:
+		if player.attack_component.curr.state >= Global.MOVE_STATE.recovery:
+			# dash over
+			player.velocity.x = 0
+			special_move = false
+		elif player.attack_component.curr.state >= Global.MOVE_STATE.active:
+			if player.facing_right:
+				player.velocity.x = special_dash_speed
+			else:
+				player.velocity.x = -1 * special_dash_speed
 	else:
 		HandleAirDash(player, player.input_component.input_doubletap, delta)
 		HandleDoubleJump(player)
