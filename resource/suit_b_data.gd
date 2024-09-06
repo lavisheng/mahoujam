@@ -42,12 +42,12 @@ func SuitAbilityCallback(player: Player) -> void:
 
 
 func HandleAirDash(player: Player, direction: float, delta: float) -> void:
-	if not special_move and not player.is_on_floor() and direction != 0 and num_airdashes > 0:
+	if not special_move and not player.is_on_floor() and direction != 0 and bar_percentage > 0.2:
 		player.velocity.x = direction * dash_speed
 		air_movement = true
 		player.velocity.y = 0
-		num_airdashes -= 1
 		airdash_delta = .75
+		bar_percentage = clamp(bar_percentage - 0.2, 0., 1.)
 	elif air_movement and airdash_delta > 0:
 		airdash_delta -= delta
 		player.velocity.x *= airdash_delta * airdash_delta * airdash_delta
@@ -59,13 +59,14 @@ func HandleDoubleJump(player: Player) -> void:
 	if (
 		not player.movement_component.is_jumping
 		and player.input_component.GetJumpInput()
-		and num_airdashes > 0
+		and bar_percentage > 0.2
 	):
-		num_airdashes -= 1
 		player.velocity.y = jump_velocity * jump_power_multiplier
+		bar_percentage = clamp(bar_percentage - 0.2, 0., 1.)
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
+	print("BAR PERCENTAGE %s" % bar_percentage)
 	if special_move:
 		if player.attack_component.curr.state >= Global.MOVE_STATE.recovery:
 			# dash over

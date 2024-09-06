@@ -11,6 +11,7 @@ script = ExtResource("1_isn63")
 startup_frames = 6
 active_frames = 8
 recovery_frames = 4
+bar_gain = 0.2
 hitbox = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
