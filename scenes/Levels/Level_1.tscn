@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://23830erapn2a"]
+[gd_scene load_steps=10 format=4 uid="uid://23830erapn2a"]
 
 [ext_resource type="Texture2D" uid="uid://b08cjm3xvoini" path="res://addons/godot-git-plugin/tiles.png" id="1_4lsi7"]
 [ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_lfs7c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://62bnbohbk04s" path="res://resource/suit_a_resource.tres" id="4_yqthj"]
 [ext_resource type="PackedScene" uid="uid://blypv8iu3rnnk" path="res://scenes/collectable.tscn" id="5_1mqpx"]
 [ext_resource type="PackedScene" uid="uid://cnn6k6jode1fj" path="res://scenes/Managers/collectable_manager.tscn" id="6_fwduk"]
+[ext_resource type="PackedScene" uid="uid://baowsp7y5htsf" path="res://scenes/Managers/timer_manager.tscn" id="7_58nbw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ff5mm"]
 texture = ExtResource("1_4lsi7")
@@ -69,6 +70,8 @@ limit_right = 5750
 limit_smoothed = true
 
 [node name="CollectableManager" parent="." instance=ExtResource("6_fwduk")]
+
+[node name="TimerManager" parent="." instance=ExtResource("7_58nbw")]
 
 [connection signal="body_entered" from="Player/AttackComponent" to="Player/AttackComponent" method="_on_body_entered"]
 
