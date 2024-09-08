@@ -1,5 +1,4 @@
-extends Area2D
-@export var enemy_projectile_component: EnemyProjectileComponent
+extends "res://scripts/PlayerHurtboxes/player_hurtbox.gd"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,11 +12,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	pass
+	print("BODY ENTERED")
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if area is PlayerHurtbox:
-		area.HitPlayer(0)
-		print("HIT")
-		queue_free()
+func HitPlayer(damage: int) -> void:
+	print("HIT BODY")
+	player.HandleBodyHit(damage)

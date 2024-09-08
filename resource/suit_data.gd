@@ -27,3 +27,11 @@ func SuitAbilityProcess(player: Player, delta: float):
 
 func SuitCollisionCallback(player: Player):
 	pass
+
+
+func SuitHitBodyCallback(player: Player, damage: int) -> void:
+	player.health_component.TakeDamage(damage)
+
+
+func SuitHitLegCallback(player: Player, damage: int) -> void:
+	player.health_component.TakeDamage(damage)

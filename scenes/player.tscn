@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dggrw0wxguj32"]
+[gd_scene load_steps=21 format=3 uid="uid://dggrw0wxguj32"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
 [ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_ndvjg"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bcr4mxjnmm2dd" path="res://scenes/components/gravity_component.tscn" id="3_ai6lb"]
 [ext_resource type="Script" path="res://resource/suit_a_data.gd" id="3_c8tp7"]
 [ext_resource type="PackedScene" uid="uid://ckihlbjdqjs2q" path="res://scenes/components/input_component.tscn" id="4_akang"]
+[ext_resource type="PackedScene" uid="uid://svhfdqoqc5kh" path="res://scenes/PlayerHurtboxes/PlayerBody.tscn" id="4_qvw3g"]
+[ext_resource type="PackedScene" uid="uid://cvbxnhy0x17p4" path="res://scenes/PlayerHurtboxes/PlayerLegs.tscn" id="5_gywwq"]
 [ext_resource type="PackedScene" uid="uid://bmyqf2bljkqnx" path="res://scenes/components/movement_component.tscn" id="5_i6bpe"]
 [ext_resource type="Script" path="res://scripts/suit_component.gd" id="7_2cdo8"]
 [ext_resource type="PackedScene" uid="uid://crtqh7b1jsjy" path="res://scenes/components/attack_component.tscn" id="7_uie5s"]
@@ -24,6 +26,7 @@ jump_velocity = -250.0
 special_jump_velocity = -600.0
 special_dash_startup = 900.0
 special_dash_speed = 1000.0
+projectile_frame_jump_window = 10
 suitColor = Color(0, 0, 0, 1)
 name = ""
 air_speed_delta = 0
@@ -48,12 +51,12 @@ land_speed_multiplier = 0.0
 jump_power_multiplier = 0.0
 air_movement = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
-size = Vector2(24, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1qwk"]
+size = Vector2(20, 60)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component", "attack_component", "health_component", "debugComponent")]
-collision_layer = 7
-collision_mask = 6
+collision_layer = 262
+collision_mask = 262
 script = ExtResource("1_0d1te")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
@@ -65,12 +68,15 @@ debugComponent = NodePath("DebugComponent")
 active_suit = SubResource("Resource_kjec6")
 inactive_suit = SubResource("Resource_nhx6o")
 
+[node name="PlayerBody" parent="." instance=ExtResource("4_qvw3g")]
+position = Vector2(0, -7)
+
+[node name="PlayerLegs" parent="." instance=ExtResource("5_gywwq")]
+position = Vector2(0, 21)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.615)
 texture = ExtResource("1_ndvjg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vf57v")
 
 [node name="GravityComponent" parent="." instance=ExtResource("3_ai6lb")]
 
@@ -106,5 +112,8 @@ position = Vector2(39.5, 1)
 max_health = 15
 
 [node name="DebugComponent" parent="." instance=ExtResource("10_1rs6k")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e1qwk")
 
 [editable path="AttackComponent"]
