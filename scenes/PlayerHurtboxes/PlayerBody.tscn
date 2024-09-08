@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://svhfdqoqc5kh"]
+
+[ext_resource type="Script" path="res://scripts/PlayerHurtboxes/player_body.gd" id="1_imkes"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw4qn"]
+size = Vector2(26, 39)
+
+[node name="PlayerBody" type="Area2D"]
+script = ExtResource("1_imkes")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_uw4qn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -29,3 +29,9 @@ func SuitCollisionCallback(player: Player):
 
 func AddBar(val: float) -> void:
 	bar_percentage = clamp(bar_percentage + val, 0., BAR_MAX)
+
+func SuitHitBodyCallback(player: Player, damage: int) -> void:
+	player.health_component.TakeDamage(damage)
+
+func SuitHitLegCallback(player: Player, damage: int) -> void:
+	player.health_component.TakeDamage(damage)

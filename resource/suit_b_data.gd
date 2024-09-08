@@ -3,6 +3,7 @@
 class_name Suit_b extends SuitData
 
 const NUM_AIRDASHES = 2
+const FRAME = 1 / 60.
 @export_subgroup("Settings")
 var num_airdashes: int = NUM_AIRDASHES
 @export var airdash_delta: float = .75
@@ -11,6 +12,10 @@ var num_airdashes: int = NUM_AIRDASHES
 @export var special_jump_velocity: float = -600
 @export var special_dash_startup: float = 900
 @export var special_dash_speed: float = 1000
+@export var projectile_frame_jump_window: int = 10
+
+var projectile_jump_timer = 0
+var leg_damage: int = 0
 
 var special_move: bool = false
 var special_roll_delta: float = 1.
@@ -30,15 +35,6 @@ func SuitAbilityCallback(player: Player) -> void:
 		player.velocity.y = 0
 		air_movement = true
 		special_move = true
-	#if (
-	#	player.gravity_component.is_falling
-	#	and player.input_component.GetSpecialInput()
-	#	and not air_movement
-	#):
-	#	player.velocity = Vector2(1, 1).limit_length(1.) * 1000
-	#	air_movement = true
-	#	special_move = true
-	#	special_roll_delta = 2.
 
 
 func HandleAirDash(player: Player, direction: float, delta: float) -> void:
@@ -60,9 +56,30 @@ func HandleDoubleJump(player: Player) -> void:
 		not player.movement_component.is_jumping
 		and player.input_component.GetJumpInput()
 		and bar_percentage > 0.2
+		and projectile_jump_timer <= 0
 	):
 		player.velocity.y = jump_velocity * jump_power_multiplier
 		bar_percentage = clamp(bar_percentage - 0.2, 0., 1.)
+
+
+func SuitHitLegCallback(player: Player, damage: int) -> void:
+	if player.is_on_floor():
+		player.health_component.TakeDamage(damage)
+	else:
+		projectile_jump_timer = FRAME * projectile_frame_jump_window
+		# store leg damage for later
+		leg_damage = damage
+
+
+func HandleProjectileJump(player: Player, delta: float) -> void:
+	projectile_jump_timer -= delta
+	if projectile_jump_timer > 0:
+		if player.input_component.GetJumpInput():
+			print("JUMPED OFF OF PROJECTILE")
+			player.velocity.y = jump_velocity * jump_power_multiplier
+			projectile_jump_timer = 0
+	else:
+		player.health_component.TakeDamage(leg_damage)
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
@@ -80,5 +97,6 @@ func SuitAbilityProcess(player: Player, delta: float) -> void:
 	else:
 		HandleAirDash(player, player.input_component.input_doubletap, delta)
 		HandleDoubleJump(player)
+		HandleProjectileJump(player, delta)
 	if player.is_on_floor():
 		num_airdashes = NUM_AIRDASHES

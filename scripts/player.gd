@@ -38,6 +38,14 @@ func HandleHitCallback() -> void:
 func HandleKillCallback(bar_gain: float) -> void:
 	active_suit.AddBar(bar_gain)
 
+# handling hurtbox
+func HandleBodyHit(damage: int) -> void:
+	suit_component.HitSuitBody(self, active_suit, damage)
+
+
+func HandleLegHit(damage: int) -> void:
+	suit_component.HitSuitLeg(self, active_suit, damage)
+
 
 func _physics_process(delta):
 	#attack_component.HandleAttack(self, input_component.GetAttackInput(), facing_right)
