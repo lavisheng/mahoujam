@@ -22,6 +22,8 @@ airdash_delta = 0.75
 dash_speed = 2000.0
 jump_velocity = -250.0
 special_jump_velocity = -600.0
+special_dash_startup = 900.0
+special_dash_speed = 1000.0
 suitColor = Color(0, 0, 0, 1)
 name = ""
 air_speed_delta = 0
@@ -37,14 +39,6 @@ giga_jump_vel = -700.0
 homing_speed = 200.0
 homing_delta = 0.75
 hover_time = 0.0
-suitColor = Color(0, 0, 0, 1)
-name = ""
-air_speed_delta = 0
-air_speed_multiplier = 0.0
-land_speed_delta = 0
-land_speed_multiplier = 0.0
-jump_power_multiplier = 0.0
-air_movement = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf57v"]
 size = Vector2(24, 60)
@@ -53,8 +47,6 @@ size = Vector2(24, 60)
 collision_layer = 7
 collision_mask = 6
 script = ExtResource("1_0d1te")
-active_suit = SubResource("Resource_kjec6")
-inactive_suit = SubResource("Resource_nhx6o")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
@@ -62,6 +54,8 @@ suit_component = NodePath("SuitComponent")
 attack_component = NodePath("AttackComponent")
 health_component = NodePath("HealthComponent")
 debugComponent = NodePath("DebugComponent")
+active_suit = SubResource("Resource_kjec6")
+inactive_suit = SubResource("Resource_nhx6o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.615)
