@@ -29,7 +29,7 @@ collision_mask = 22
 active_suit = ExtResource("4_58l5r")
 inactive_suit = ExtResource("5_430nq")
 
-[node name="AttackComponent" parent="Player" index="6"]
+[node name="AttackComponent" parent="Player" index="7"]
 collision_mask = 31
 
 [node name="ComboManager" parent="." node_paths=PackedStringArray("HUDListener") instance=ExtResource("6_6uumq")]
