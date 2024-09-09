@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal been_hit
+
 @export_subgroup("Nodes")
 @export var enemy_gravity_component: EnemyGravityComponent
 @export var health_component: HealthComponent
@@ -12,6 +14,10 @@ extends CharacterBody2D
 var cooldown: float = 1.
 var hitstop_delta: float = 0.
 
+func _enter_tree() -> void:
+	var p: Player = get_parent().get_node("Player")
+	been_hit.connect(p.HandleHitCallback)
+	health_component.on_death.connect(p.HandleKillCallback)
 
 func _physics_process(delta):
 	hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
@@ -34,3 +40,4 @@ func HandleAttack(damage: int) -> void:
 		velocity.y = launch_force
 	else:
 		velocity.y = juggle_force
+	been_hit.emit()

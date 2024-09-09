@@ -1,8 +1,11 @@
 class_name HealthComponent
 extends Node
 
+signal on_death(bar_gain)
+
 @export_subgroup("Settings")
 @export var max_health: int = 10
+@export var bar_gain: float = 0.
 
 var health: int = max_health
 
@@ -12,11 +15,12 @@ func TakeDamage(damage: int) -> void:
 
 
 func Die() -> void:
+	on_death.emit(bar_gain)
 	get_parent().queue_free()
 
 
 func _process(_delta: float) -> void:
-	if health == 0:
+	if health <= 0:
 		Die()
 
 

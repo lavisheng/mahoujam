@@ -1,4 +1,4 @@
-extends "res://scripts/PlayerAttacks/player_attack_base.gd"
+extends "res://scripts/PlayerHurtboxes/player_hurtbox.gd"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,5 +12,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body):
-	if body.has_method("HandleAttack"):
-		body.HandleAttack(damage)
+	print("ENTERED LEG")
+
+
+func HitPlayer(damage: int) -> void:
+	print("HIT LEG")
+	player.HandleLegHit(damage)

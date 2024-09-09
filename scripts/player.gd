@@ -22,12 +22,29 @@ var hitstop_delta: float = 0.
 func _ready() -> void:
 	modulate = inactive_suit.suitColor
 	input_component.attack_signal.connect(HandleAttackCallback)
+	health_component.on_death.connect(HandleKillCallback)
 
 
 # for signal purposes
 func HandleAttackCallback() -> void:
 	print("Attack Signal Received")
 	attack_component.HandleAttack(self)
+
+
+func HandleHitCallback() -> void:
+	active_suit.AddBar(attack_component.curr.bar_gain)
+
+
+func HandleKillCallback(bar_gain: float) -> void:
+	active_suit.AddBar(bar_gain)
+
+# handling hurtbox
+func HandleBodyHit(damage: int) -> void:
+	suit_component.HitSuitBody(self, active_suit, damage)
+
+
+func HandleLegHit(damage: int) -> void:
+	suit_component.HitSuitLeg(self, active_suit, damage)
 
 
 func _physics_process(delta):
