@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dggrw0wxguj32"]
+[gd_scene load_steps=27 format=3 uid="uid://dggrw0wxguj32"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
 [ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_ndvjg"]
@@ -51,6 +51,24 @@ land_speed_multiplier = 0.0
 jump_power_multiplier = 0.0
 air_movement = false
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln3oc"]
+size = Vector2(24, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7ovi"]
+size = Vector2(24, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ralk"]
+size = Vector2(49, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2hm0"]
+size = Vector2(46, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq22v"]
+size = Vector2(20, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikqpd"]
+size = Vector2(46, 12)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1qwk"]
 size = Vector2(20, 60)
 
@@ -71,8 +89,16 @@ inactive_suit = SubResource("Resource_nhx6o")
 [node name="PlayerBody" parent="." instance=ExtResource("4_qvw3g")]
 position = Vector2(0, -7)
 
+[node name="PlayerBodyHurtbox" type="CollisionShape2D" parent="PlayerBody"]
+shape = SubResource("RectangleShape2D_ln3oc")
+debug_color = Color(0.217636, 0.527135, 0.948973, 0.42)
+
 [node name="PlayerLegs" parent="." instance=ExtResource("5_gywwq")]
 position = Vector2(0, 21)
+
+[node name="PlayerLegHurtbox" type="CollisionShape2D" parent="PlayerLegs"]
+shape = SubResource("RectangleShape2D_r7ovi")
+debug_color = Color(0.217636, 0.527135, 0.948973, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.615)
@@ -96,17 +122,44 @@ air_one = NodePath("air_one")
 air_two = NodePath("air_two")
 suit_b_special = NodePath("SuitBAttack")
 
-[node name="air_one" parent="AttackComponent" instance=ExtResource("10_fevue")]
+[node name="air_one" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_fevue")]
 position = Vector2(20, -1)
+hitbox = NodePath("air_hitbox")
 
-[node name="air_two" parent="AttackComponent" instance=ExtResource("11_n6yt3")]
-position = Vector2(31, 0)
+[node name="air_hitbox" type="CollisionShape2D" parent="AttackComponent/air_one"]
+position = Vector2(17, 12)
+shape = SubResource("RectangleShape2D_4ralk")
+disabled = true
+debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
-[node name="GroundLauncher" parent="AttackComponent" instance=ExtResource("10_e042t")]
-position = Vector2(25, 1)
+[node name="air_two" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("11_n6yt3")]
+position = Vector2(36, 0)
+hitbox = NodePath("air_two_hitbox")
 
-[node name="SuitBAttack" parent="AttackComponent" instance=ExtResource("13_deq7p")]
-position = Vector2(39.5, 1)
+[node name="air_two_hitbox" type="CollisionShape2D" parent="AttackComponent/air_two"]
+shape = SubResource("RectangleShape2D_q2hm0")
+disabled = true
+debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
+
+[node name="GroundLauncher" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_e042t")]
+position = Vector2(23, 0)
+hitbox = NodePath("GroundHitbox")
+
+[node name="GroundHitbox" type="CollisionShape2D" parent="AttackComponent/GroundLauncher"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_tq22v")
+disabled = true
+debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
+
+[node name="SuitBAttack" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("13_deq7p")]
+position = Vector2(39, 2)
+hitbox = NodePath("SuitBHitbox")
+
+[node name="SuitBHitbox" type="CollisionShape2D" parent="AttackComponent/SuitBAttack"]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_ikqpd")
+disabled = true
+debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_cuyes")]
 max_health = 15
