@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body):
-	body.HandleAttack(damage)
+	body.HandleAttack(damage, vertical_velocity)

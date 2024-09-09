@@ -13,4 +13,10 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body):
 	if body.has_method("HandleAttack"):
-		body.HandleAttack(damage)
+		print("hit suit b attack")
+		body.HandleAttack(damage, vertical_velocity, 900.)
+		print(get_parent().get_parent())
+
+
+func _on_body_exited(body: Node2D) -> void:
+	body.velocity.x = 0

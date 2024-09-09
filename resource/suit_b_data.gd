@@ -91,12 +91,12 @@ func HandleProjectileJump(player: Player, delta: float) -> void:
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
-	print("BAR PERCENTAGE %s" % bar_percentage)
 	if special_move:
 		if player.attack_component.curr.state >= Global.MOVE_STATE.recovery:
 			# dash over
 			player.velocity.x = 0
 			special_move = false
+			air_movement = false
 		elif player.attack_component.curr.state >= Global.MOVE_STATE.active:
 			if player.facing_right:
 				player.velocity.x = special_dash_speed

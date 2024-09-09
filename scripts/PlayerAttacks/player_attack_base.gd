@@ -9,6 +9,7 @@ const FRAME = 1. / 60.
 @export var cancellable: bool = true
 @export var damage: int = 2
 @export var vertical_velocity: float = 0.  # launch velocity/juggle
+@export var horizontal_velocity: float = 0.
 @export var bar_gain: float = 0.
 
 @export_subgroup("Nodes")

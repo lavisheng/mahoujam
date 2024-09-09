@@ -106,6 +106,7 @@ scale = Vector2(0.25, 0.615)
 texture = ExtResource("1_ndvjg")
 
 [node name="GravityComponent" parent="." instance=ExtResource("3_ai6lb")]
+gravity = 1050.0
 
 [node name="InputComponent" parent="." instance=ExtResource("4_akang")]
 
@@ -124,17 +125,18 @@ air_two = NodePath("air_two")
 suit_b_special = NodePath("SuitBAttack")
 
 [node name="air_one" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_fevue")]
-position = Vector2(20, -1)
+position = Vector2(37, 17)
+vertical_velocity = -500.0
 hitbox = NodePath("air_hitbox")
 
 [node name="air_hitbox" type="CollisionShape2D" parent="AttackComponent/air_one"]
-position = Vector2(17, 12)
 shape = SubResource("RectangleShape2D_4ralk")
 disabled = true
 debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="air_two" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("11_n6yt3")]
 position = Vector2(36, 0)
+vertical_velocity = -100.0
 hitbox = NodePath("air_two_hitbox")
 
 [node name="air_two_hitbox" type="CollisionShape2D" parent="AttackComponent/air_two"]
@@ -144,6 +146,7 @@ debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="GroundLauncher" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_e042t")]
 position = Vector2(23, 0)
+vertical_velocity = -500.0
 hitbox = NodePath("GroundHitbox")
 
 [node name="GroundHitbox" type="CollisionShape2D" parent="AttackComponent/GroundLauncher"]
@@ -153,11 +156,12 @@ disabled = true
 debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="SuitBAttack" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("13_deq7p")]
-position = Vector2(39, 2)
+position = Vector2(36, 2)
+collision_mask = 2
+startup_frames = 2
 hitbox = NodePath("SuitBHitbox")
 
 [node name="SuitBHitbox" type="CollisionShape2D" parent="AttackComponent/SuitBAttack"]
-position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_ikqpd")
 disabled = true
 debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
@@ -176,5 +180,7 @@ editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_e1qwk")
+
+[connection signal="body_exited" from="AttackComponent/SuitBAttack" to="AttackComponent/SuitBAttack" method="_on_body_exited"]
 
 [editable path="AttackComponent"]
