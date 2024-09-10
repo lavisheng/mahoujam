@@ -14,20 +14,12 @@
 
 [node name="Enemy2" parent="." instance=ExtResource("4_a426q")]
 position = Vector2(733, 227)
+collision_mask = 12
 enemy_data = ExtResource("2_d4efd")
 facing_right = false
 
-[node name="Platform" parent="." instance=ExtResource("1_as7qk")]
-position = Vector2(374, 438)
-
-[node name="Platform" parent="Platform" instance=ExtResource("1_as7qk")]
-position = Vector2(228, -56)
-
-[node name="Platform" parent="Platform/Platform" instance=ExtResource("1_as7qk")]
-position = Vector2(67, -106)
-
 [node name="Player" parent="." instance=ExtResource("2_7eb8n")]
-position = Vector2(250, 397)
+position = Vector2(495, 335)
 collision_layer = 5
 collision_mask = 22
 active_suit = ExtResource("4_58l5r")
@@ -36,16 +28,38 @@ inactive_suit = ExtResource("5_430nq")
 [node name="AttackComponent" parent="Player" index="6"]
 collision_mask = 31
 
+[node name="air_one" parent="Player/AttackComponent" index="0"]
+collision_layer = 8
+
+[node name="air_two" parent="Player/AttackComponent" index="1"]
+collision_layer = 8
+
+[node name="GroundLauncher" parent="Player/AttackComponent" index="2"]
+collision_layer = 8
+
+[node name="SuitBAttack" parent="Player/AttackComponent" index="3"]
+collision_layer = 8
+
 [node name="ComboManager" parent="." node_paths=PackedStringArray("HUDListener") instance=ExtResource("6_6uumq")]
 HUDListener = NodePath("../Player_HUD")
 
 [node name="Enemy" parent="." instance=ExtResource("4_a426q")]
-position = Vector2(364, 394)
+position = Vector2(344, 393)
 collision_mask = 12
 enemy_data = ExtResource("8_rrilj")
+facing_right = false
 
 [node name="Player_HUD" parent="." node_paths=PackedStringArray("comboManagerNode") instance=ExtResource("7_d5yql")]
 comboManagerNode = NodePath("../ComboManager")
+
+[node name="Platform" parent="." instance=ExtResource("1_as7qk")]
+position = Vector2(348, 477)
+
+[node name="Platform3" parent="." instance=ExtResource("1_as7qk")]
+position = Vector2(669, 307)
+
+[node name="Platform2" parent="." instance=ExtResource("1_as7qk")]
+position = Vector2(602, 413)
 
 [connection signal="body_entered" from="Player/AttackComponent" to="Player/AttackComponent" method="_on_body_entered"]
 
