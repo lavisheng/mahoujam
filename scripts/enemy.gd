@@ -41,3 +41,4 @@ func HandleAttack(damage: int) -> void:
 	else:
 		velocity.y = juggle_force
 	been_hit.emit()
+	EventBus.SendEvent( "ComboIncrement", false );
