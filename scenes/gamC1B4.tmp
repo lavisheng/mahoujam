@@ -43,6 +43,7 @@ HUDListener = NodePath("../Player_HUD")
 position = Vector2(364, 394)
 collision_mask = 12
 enemy_data = ExtResource("8_rrilj")
+facing_right = false
 
 [node name="Player_HUD" parent="." node_paths=PackedStringArray("comboManagerNode") instance=ExtResource("7_d5yql")]
 comboManagerNode = NodePath("../ComboManager")
