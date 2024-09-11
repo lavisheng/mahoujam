@@ -1,4 +1,4 @@
-extends Area2D
+extends "res://scripts/PlayerAttacks/player_attack_base.gd"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,8 +11,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_body_entered(body: Node2D) -> void:
-	print("I've collected an item ( poggers ) ")
-	EventBus.SendEvent("CollectPickup", 1)
-	queue_free()
-	pass  # Replace with function body.
+func _on_body_entered(body):
+	if body.is_on_floor():
+		body.HandleAttack(damage, vertical_velocity)
+	else:
+		body.HandleAttack(damage, vertical_velocity / 2.)

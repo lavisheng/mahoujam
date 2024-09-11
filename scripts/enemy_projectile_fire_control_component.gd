@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 ## travels or changes.
 func Fire(enemy: Node2D, target: Vector2, offset: Vector2, travel_func: Callable) -> void:
 	var projectile = load(projectile_path).instantiate()
-	print(projectile)
 	projectile.transform = projectile.transform.translated(enemy.transform.get_origin() + offset)
 	projectile.enemy_projectile_component.Fire(projectile, target, travel_func)
 	enemy.get_parent().add_child(projectile)

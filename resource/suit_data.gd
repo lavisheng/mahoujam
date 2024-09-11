@@ -11,6 +11,9 @@ class_name SuitData
 @export var jump_power_multiplier: float
 @export var air_movement: bool
 
+var BAR_MAX: float = 10000.0
+var bar_percentage: float = 10000
+
 
 func SuitAbilityCallback(player: Player):
 	pass
@@ -22,3 +25,15 @@ func SuitAbilityProcess(player: Player, delta: float):
 
 func SuitCollisionCallback(player: Player):
 	pass
+
+
+func AddBar(val: float) -> void:
+	bar_percentage = clamp(bar_percentage + val, 0., BAR_MAX)
+
+
+func SuitHitBodyCallback(player: Player, damage: int) -> void:
+	player.health_component.TakeDamage(damage)
+
+
+func SuitHitLegCallback(player: Player, damage: int) -> void:
+	player.health_component.TakeDamage(damage)

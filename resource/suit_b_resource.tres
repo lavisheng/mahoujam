@@ -4,7 +4,14 @@
 
 [resource]
 script = ExtResource("1_bc78a")
-bonusJumpVel = -250.0
+airdash_delta = 0.75
+dash_speed = 2000.0
+jump_velocity = -250.0
+special_jump_velocity = -600.0
+special_dash_startup = 900.0
+special_dash_speed = 1000.0
+projectile_frame_jump_window = 10
+post_dash_linger_frames = 5
 suitColor = Color(0, 0.600731, 0.156428, 1)
 name = "suit_b"
 air_speed_delta = 100

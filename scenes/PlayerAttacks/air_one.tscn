@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyjrvchr5vx5t"]
+
+[ext_resource type="Script" path="res://scripts/PlayerAttacks/air_one.gd" id="1_1e0cn"]
+
+[node name="air_one" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_1e0cn")
+startup_frames = 3
+active_frames = 4
+recovery_frames = 20
+cancellable = false
+bar_gain = 0.05
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
