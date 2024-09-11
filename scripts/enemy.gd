@@ -40,3 +40,4 @@ func HandleAttack(damage: int, launch_vel: float, x_vel_hit = 0) -> void:
 	velocity.y = launch_vel
 	velocity.x = x_vel_hit
 	been_hit.emit()
+	EventBus.SendEvent( "ComboIncrement", false );
