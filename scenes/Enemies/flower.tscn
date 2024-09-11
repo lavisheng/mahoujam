@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmrr0g8d3y0qd"]
+[gd_scene load_steps=13 format=3 uid="uid://dmrr0g8d3y0qd"]
 
 [ext_resource type="Texture2D" uid="uid://m4xkk4g83ie" path="res://assets/Enemy anim sprites/eyeball/eyeball idle1.png" id="1_61ykj"]
 [ext_resource type="Texture2D" uid="uid://blyf053ewc4uw" path="res://assets/Enemy anim sprites/eyeball/eyeball idle2.png" id="2_c20y8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bo4kwd5jh7wkj" path="res://assets/Enemy anim sprites/eyeball/eyeball attack2.png" id="6_snbxt"]
 [ext_resource type="Texture2D" uid="uid://bj2unjw4qv1he" path="res://assets/Enemy anim sprites/eyeball/eyeball attack3.png" id="7_u272l"]
 [ext_resource type="Texture2D" uid="uid://dylwbipki2yxk" path="res://assets/Enemy anim sprites/eyeball/eyeball attack4.png" id="8_wjc77"]
+[ext_resource type="Texture2D" uid="uid://drvqub6preyg2" path="res://assets/Enemy anim sprites/eyeball/particle.png" id="9_783xt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s5oqb"]
 animations = [{
@@ -49,12 +50,30 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_babf0"]
 size = Vector2(117, 148)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kympy"]
+particle_flag_disable_z = true
+direction = Vector3(1, -0.5, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+
 [node name="Flower" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s5oqb")
 animation = &"Attack"
-frame_progress = 0.209254
+frame_progress = 0.0277918
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_babf0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(59, -32)
+amount = 25
+amount_ratio = 0.6657
+process_material = SubResource("ParticleProcessMaterial_kympy")
+texture = ExtResource("9_783xt")
+lifetime = 1.25
+randomness = 0.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
