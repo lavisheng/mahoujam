@@ -13,6 +13,23 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_rdurp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_snbxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u272l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wjc77")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_61ykj")
 }, {
 "duration": 1.0,
@@ -26,24 +43,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_rdurp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_snbxt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_u272l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_wjc77")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_babf0"]
@@ -53,8 +53,8 @@ size = Vector2(117, 148)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s5oqb")
-animation = &"new_animation"
-frame_progress = 0.632819
+animation = &"Attack"
+frame_progress = 0.209254
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_babf0")
