@@ -33,5 +33,3 @@ func ModifyCombo(reset: bool) -> void:
 
 	#consideration: add hud to the event bus, or send a new event here rather than having a direct connection
 	HUDListener.UpdateComboEvent(activeCombo, currentCombo)
-
-	print("combo: " + str(currentCombo))

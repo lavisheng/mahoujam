@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/PlayerAttacks/air_one.gd" id="1_1e0cn"]
 
-[node name="air_one" type="Area2D" node_paths=PackedStringArray("hitbox")]
+[node name="air_one" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_1e0cn")
 startup_frames = 3
@@ -10,6 +10,5 @@ active_frames = 4
 recovery_frames = 20
 cancellable = false
 bar_gain = 0.05
-hitbox = NodePath("")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

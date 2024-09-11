@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/PlayerAttacks/ground_launcher.gd" id="1_isn63"]
 
-[node name="GroundLauncher" type="Area2D" node_paths=PackedStringArray("hitbox")]
+[node name="GroundLauncher" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_isn63")
 startup_frames = 6
 active_frames = 8
 recovery_frames = 4
 bar_gain = 0.2
-hitbox = NodePath("")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -14,4 +14,3 @@ class_name DebugComponent extends Node
 func DebugCombo(inputPressed: bool) -> void:
 	if inputPressed:
 		EventBus.SendEvent( "ComboIncrement", false );
-
