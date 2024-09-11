@@ -14,8 +14,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if fired:
+	if fired and projectile_lifetime > 0:
+		projectile_lifetime -= delta
 		travel_func.call(projectile, target_loc, delta)
+	else:
+		get_parent().queue_free()
 
 
 func Fire(proj: Node2D, target: Vector2, callable: Callable) -> void:

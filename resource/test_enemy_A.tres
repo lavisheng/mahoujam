@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://bcg8scutevts4"]
+
+[ext_resource type="Script" path="res://resource/enemy_data.gd" id="1_6h6sg"]
+
+[resource]
+script = ExtResource("1_6h6sg")
+isStationary = true
+patrolSpeed = 0.0
+turnPause = 100.0
+chaseSpeed = 0.0
+bulletDamage = 0
+bulletSpeed = 100.0
+startupTime = 1.0
+activeTime = 0.5
+recoveryTime = 2.0
+awarenessRadius = 0.0

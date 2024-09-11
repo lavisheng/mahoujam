@@ -10,14 +10,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4arhs"]
 size = Vector2(24, 65)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy_gravity_component", "health_component", "projectile_fc_component", "collision_shape")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy_gravity_component", "health_component", "projectile_fc_component")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_vfx0v")
 enemy_gravity_component = NodePath("GravityComponent3")
 health_component = NodePath("HealthComponent")
 projectile_fc_component = NodePath("EnemyProjectileFireControlComponent")
-collision_shape = NodePath("CollisionShape2D")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_veo80")]
 
