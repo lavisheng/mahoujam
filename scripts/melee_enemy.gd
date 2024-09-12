@@ -6,10 +6,11 @@ signal been_hit
 @export_subgroup("Nodes")
 @export var enemy_gravity_component: EnemyGravityComponent
 @export var health_component: HealthComponent
-@export var projectile_fc_component: EnemyProjectileFireControlComponent
+#@export var projectile_fc_component: EnemyProjectileFireControlComponent
 @export var enemy_data: EnemyData
 @export var collision_shape: CollisionShape2D
-@export var attack_component: EnemyAttackBase
+@export var enemy_attack: EnemyAttackBase
+@export var _animation_player: AnimationPlayer
 
 @export_subgroup("Settings")
 @export var launch_force: int = -500
@@ -20,6 +21,8 @@ func _enter_tree() -> void:
 	var p: Player = get_parent().get_node("Player")
 	been_hit.connect(p.HandleHitCallback)
 	health_component.on_death.connect(p.HandleKillCallback)
+	enemy_attack.damage = enemy_data.bulletDamage
+	SetAnimation("IdleMode")
 
 enum ATTACK_PHASE {STARTUP, ACTIVE, RECOVERY}
 var cooldown: float = 1.
@@ -32,6 +35,7 @@ var attack_phase: ATTACK_PHASE
 var playerWasVisible: bool = false
 var is_turning: bool = false
 @onready var turn_delta: float = enemy_data.turnPause
+
 
 func _physics_process(delta):
 	hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
@@ -49,6 +53,7 @@ func _physics_process(delta):
 		playerWasVisible = true
 	player_visible = !result.is_empty()
 	if not player_visible and !in_attack:
+		
 		# patrol
 		if !enemy_data.isStationary:
 			if is_turning:
@@ -96,6 +101,7 @@ func _physics_process(delta):
 	else:
 		# attack
 		if not in_attack:
+			SetAnimation("AttackMode")
 			velocity.x = 0
 			in_attack = true
 			attack_phase = ATTACK_PHASE.STARTUP
@@ -110,18 +116,24 @@ func _physics_process(delta):
 				ATTACK_PHASE.STARTUP:
 					cooldown += enemy_data.activeTime
 					attack_phase = ATTACK_PHASE.ACTIVE
-					var test_proj_func = func(projectile: Node2D, _target: Vector2, d: float):
-						projectile.position += _target * d
-					projectile_fc_component.Fire(self, enemy_data.bulletSpeed * Vector2(1 * (1 if facing_right else -1),0), Vector2(10 * (1 if facing_right else -1),0), test_proj_func)
+					enemy_attack.SetEnable(true)
+					enemy_attack.SetOrientation(facing_right)
 					print("active")
 				ATTACK_PHASE.ACTIVE:
 					cooldown += enemy_data.recoveryTime
 					attack_phase = ATTACK_PHASE.RECOVERY
+					enemy_attack.SetEnable(false)
 					print("recovery")
 				ATTACK_PHASE.RECOVERY:
 					in_attack = false
+					SetAnimation("IdleMode")
 	#print(velocity) 
 	move_and_slide()
+
+func SetAnimation(anim_string: String) -> void:
+	var sprite: Sprite2D = $Sprite2D
+	sprite.flip_h = not facing_right
+	_animation_player.play(anim_string)
 	
 # extract to future enemy movement script
 func HandleAttack(damage: int, launch_vel: float, x_vel_hit = 0) -> void:
@@ -130,4 +142,3 @@ func HandleAttack(damage: int, launch_vel: float, x_vel_hit = 0) -> void:
 	velocity.y = launch_vel
 	velocity.x = x_vel_hit
 	been_hit.emit()
-	#EventBus.SendEvent( "ComboIncrement", false );
