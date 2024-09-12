@@ -1,54 +1,67 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmrr0g8d3y0qd"]
+[gd_scene load_steps=9 format=3 uid="uid://dmrr0g8d3y0qd"]
 
-[ext_resource type="Texture2D" uid="uid://m4xkk4g83ie" path="res://assets/Enemy anim sprites/eyeball/eyeball idle1.png" id="1_61ykj"]
-[ext_resource type="Texture2D" uid="uid://blyf053ewc4uw" path="res://assets/Enemy anim sprites/eyeball/eyeball idle2.png" id="2_c20y8"]
-[ext_resource type="Texture2D" uid="uid://dufk5pidkk5ib" path="res://assets/Enemy anim sprites/eyeball/eyeball idle3.png" id="3_y8j1t"]
-[ext_resource type="Texture2D" uid="uid://bpdu50wy8e1sd" path="res://assets/Enemy anim sprites/eyeball/eyeball idle4.png" id="4_415t5"]
-[ext_resource type="Texture2D" uid="uid://dkffgiv8vqcgd" path="res://assets/Enemy anim sprites/eyeball/eyeball attack1.png" id="5_rdurp"]
-[ext_resource type="Texture2D" uid="uid://bo4kwd5jh7wkj" path="res://assets/Enemy anim sprites/eyeball/eyeball attack2.png" id="6_snbxt"]
-[ext_resource type="Texture2D" uid="uid://bj2unjw4qv1he" path="res://assets/Enemy anim sprites/eyeball/eyeball attack3.png" id="7_u272l"]
-[ext_resource type="Texture2D" uid="uid://dylwbipki2yxk" path="res://assets/Enemy anim sprites/eyeball/eyeball attack4.png" id="8_wjc77"]
+[ext_resource type="Texture2D" uid="uid://dplu12f7047ej" path="res://assets/Enemy anim sprites/eyeball/spritesheet.png" id="1_6bs1p"]
 [ext_resource type="Texture2D" uid="uid://drvqub6preyg2" path="res://assets/Enemy anim sprites/eyeball/particle.png" id="9_783xt"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_s5oqb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_rdurp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_snbxt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_u272l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_wjc77")
-}],
-"loop": true,
-"name": &"Attack",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_61ykj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_c20y8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_y8j1t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_415t5")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 12.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_babf0"]
 size = Vector2(117, 148)
+
+[sub_resource type="Animation" id="Animation_x1a5x"]
+resource_name = "IdleMode"
+length = 0.25
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_kdf5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gdtfa"]
+resource_name = "AttackMode"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmgep"]
+_data = {
+"AttackMode": SubResource("Animation_gdtfa"),
+"IdleMode": SubResource("Animation_x1a5x"),
+"RESET": SubResource("Animation_kdf5c")
+}
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kympy"]
 particle_flag_disable_z = true
@@ -59,13 +72,17 @@ gravity = Vector3(0, 98, 0)
 
 [node name="Flower" type="CharacterBody2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_s5oqb")
-animation = &"Attack"
-frame_progress = 0.0277918
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6bs1p")
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_babf0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fmgep")
+}
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(59, -32)
@@ -75,5 +92,3 @@ process_material = SubResource("ParticleProcessMaterial_kympy")
 texture = ExtResource("9_783xt")
 lifetime = 1.25
 randomness = 0.25
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
