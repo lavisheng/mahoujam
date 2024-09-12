@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 ## and a delta, is called while fire is active in order to determine how the projectile
 ## travels or changes.
 func Fire(enemy: Node2D, target: Vector2, offset: Vector2, travel_func: Callable) -> void:
+	print("PATH: %s" % projectile_path)
 	var projectile = load(projectile_path).instantiate()
 	projectile.transform = projectile.transform.translated(enemy.transform.get_origin() + offset)
 	projectile.enemy_projectile_component.Fire(projectile, target, travel_func)

@@ -13,7 +13,4 @@ class_name DebugComponent extends Node
 
 func DebugCombo(inputPressed: bool) -> void:
 	if inputPressed:
-		var node = comboManagerNode
-		if not node:
-			node = $root/Game/ComboManager
-		node.ModifyCombo(false)
+		EventBus.SendEvent( "ComboIncrement", false );

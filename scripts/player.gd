@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var attack_component: AttackComponent
 @export var health_component: HealthComponent
 @export var debugComponent: DebugComponent
+#@export var combo_component: ComboComponent
 
 #@export var homing_target :     Node
 @export var active_suit: SuitData
@@ -20,7 +21,6 @@ var hitstop_delta: float = 0.
 
 
 func _ready() -> void:
-	modulate = inactive_suit.suitColor
 	input_component.attack_signal.connect(HandleAttackCallback)
 	health_component.on_death.connect(HandleKillCallback)
 
@@ -33,10 +33,12 @@ func HandleAttackCallback() -> void:
 
 func HandleHitCallback() -> void:
 	active_suit.AddBar(attack_component.curr.bar_gain)
+	EventBus.SendEvent( "ComboIncrement", false )
 
 
 func HandleKillCallback(bar_gain: float) -> void:
 	active_suit.AddBar(bar_gain)
+
 
 # handling hurtbox
 func HandleBodyHit(damage: int) -> void:
@@ -54,6 +56,8 @@ func _physics_process(delta):
 		and attack_component.curr.state <= Global.MOVE_STATE.active
 	):
 		return
+	elif attack_component.curr.state == Global.MOVE_STATE.rest and is_on_floor():
+		EventBus.SendEvent( "ComboIncrement", true)
 	#hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
 	#if hitstop_delta > 0:
 	#	return

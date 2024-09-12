@@ -13,6 +13,6 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	print("I've collected an item ( poggers ) ")
-	EventBus.SendEvent( "CollectPickup", 1 );
+	EventBus.SendEvent("CollectPickup", 1)
 	queue_free()
 	pass  # Replace with function body.

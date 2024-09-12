@@ -13,8 +13,10 @@ var num_airdashes: int = NUM_AIRDASHES
 @export var special_dash_startup: float = 900
 @export var special_dash_speed: float = 1000
 @export var projectile_frame_jump_window: int = 10
+@export var post_dash_linger_frames: int = 2
 
 var projectile_jump_timer = 0
+var post_dash_linger_timer = 0
 var leg_damage: int = 0
 
 var special_move: bool = false
@@ -38,7 +40,7 @@ func SuitAbilityCallback(player: Player) -> void:
 
 
 func HandleAirDash(player: Player, direction: float, delta: float) -> void:
-	if not special_move and not player.is_on_floor() and direction != 0 and bar_percentage > 0.2:
+	if not special_move and not player.is_on_floor() and direction != 0 and bar_percentage >= 0.2:
 		player.velocity.x = direction * dash_speed
 		air_movement = true
 		player.velocity.y = 0
@@ -48,14 +50,20 @@ func HandleAirDash(player: Player, direction: float, delta: float) -> void:
 		airdash_delta -= delta
 		player.velocity.x *= airdash_delta * airdash_delta * airdash_delta
 		if abs(player.velocity.x) <= 0.05:
+			airdash_delta = 0
+			post_dash_linger_timer = post_dash_linger_frames * FRAME
+	elif post_dash_linger_timer > 0:
+		post_dash_linger_timer -= delta
+		if post_dash_linger_timer <= 0:
 			air_movement = false
 
 
 func HandleDoubleJump(player: Player) -> void:
 	if (
-		not player.movement_component.is_jumping
+		not player.is_on_floor()
+		and not player.movement_component.is_jumping
 		and player.input_component.GetJumpInput()
-		and bar_percentage > 0.2
+		and bar_percentage >= 0.2
 		and projectile_jump_timer <= 0
 	):
 		player.velocity.y = jump_velocity * jump_power_multiplier
@@ -83,12 +91,12 @@ func HandleProjectileJump(player: Player, delta: float) -> void:
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
-	print("BAR PERCENTAGE %s" % bar_percentage)
 	if special_move:
 		if player.attack_component.curr.state >= Global.MOVE_STATE.recovery:
 			# dash over
 			player.velocity.x = 0
 			special_move = false
+			air_movement = false
 		elif player.attack_component.curr.state >= Global.MOVE_STATE.active:
 			if player.facing_right:
 				player.velocity.x = special_dash_speed

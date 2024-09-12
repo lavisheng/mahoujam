@@ -30,8 +30,6 @@ func HandleAttack(player: Player) -> void:
 	if curr.state == Global.MOVE_STATE.rest:
 		if player.is_on_floor():
 			curr = ground_launch
-		#elif curr == air_one and curr.state == Global.MOVE_STATE.recovery:
-		#	curr = air_two
 		else:
 			curr = air_one
 		curr.SetOrientation(player.facing_right)
@@ -43,14 +41,6 @@ func HandleAttack(player: Player) -> void:
 			curr.SetOrientation(player.facing_right)
 			curr.state = Global.MOVE_STATE.startup
 			timer = 0.
-
-	#if is_attacking or (attacker.hitstop_delta > 0):
-	#	return
-	#is_attacking = true
-	#attack_delta = active_len
-	#right_hitbox.disabled = !facing_right
-	#left_hitbox.disabled = facing_right
-
 
 func SuitBSpecial(orientation: bool) -> bool:
 	if curr.state == Global.MOVE_STATE.rest or curr.cancellable:
@@ -66,14 +56,3 @@ func _physics_process(delta: float):
 	timer += delta
 	if curr.state != Global.MOVE_STATE.rest:
 		curr.HandleState(timer)
-	#attack_delta = clamp(attack_delta - delta, 0, active_len)
-	#if is_attacking and (attack_delta <= 0):
-	#	right_hitbox.disabled = true
-	#	left_hitbox.disabled = true
-
-	#is_attacking = attack_delta > 0
-
-#func _on_body_entered(body):
-#	body.HandleAttack(damage)
-#	body.hitstop_delta = hitstop
-#	attacker.hitstop_delta = hitstop

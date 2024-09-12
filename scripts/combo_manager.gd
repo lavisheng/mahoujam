@@ -11,6 +11,7 @@ var activeCombo: ComboData = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventBus.Subscribe( "ComboIncrement", self, "ModifyCombo" );
 	pass  # Replace with function body.
 
 
@@ -30,6 +31,5 @@ func ModifyCombo(reset: bool) -> void:
 			currentComboIdx += 1
 			activeCombo = combo_array[currentComboIdx]
 
+	#consideration: add hud to the event bus, or send a new event here rather than having a direct connection
 	HUDListener.UpdateComboEvent(activeCombo, currentCombo)
-
-	print("combo: " + str(currentCombo))
