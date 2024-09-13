@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=4 uid="uid://23830erapn2a"]
+[gd_scene load_steps=17 format=4 uid="uid://23830erapn2a"]
 
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_0tnpo"]
 [ext_resource type="Texture2D" uid="uid://bh1b7bn3eohfb" path="res://assets/Background parallax/bg-1.png" id="1_3wtnk"]
 [ext_resource type="TileSet" uid="uid://cxaylegs12m73" path="res://resource/Tiles/new_tile_set.tres" id="1_wbw3w"]
 [ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_lfs7c"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://d8bfkwm5gfdx" path="res://scenes/combo_manager.tscn" id="14_u1wrv"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_0tnpo")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

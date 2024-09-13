@@ -40,7 +40,7 @@ collision_mask = 22
 active_suit = ExtResource("3_skxov")
 inactive_suit = ExtResource("4_ho2gr")
 
-[node name="AttackComponent" parent="Player" index="7"]
+[node name="AttackComponent" parent="Player" index="8"]
 collision_mask = 31
 
 [node name="Camera2D3" type="Camera2D" parent="Player"]
