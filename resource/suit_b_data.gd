@@ -8,7 +8,7 @@ const FRAME = 1 / 60.
 var num_airdashes: int = NUM_AIRDASHES
 @export var airdash_delta: float = 1.6
 @export var dash_speed: float = 2000
-@export var jump_velocity: float = -250.0
+@export var jump_velocity: float = -350.0
 @export var special_jump_velocity: float = -600
 @export var special_dash_startup: float = 900
 @export var special_dash_speed: float = 1000
@@ -70,6 +70,7 @@ func HandleDoubleJump(player: Player) -> void:
 	):
 		player.velocity.y = jump_velocity * jump_power_multiplier
 		bar_percentage = clamp(bar_percentage - 20, 0, BAR_MAX)
+		player.SetAnimation("air_jump_start")
 
 
 func SuitHitLegCallback(player: Player, damage: int) -> void:
@@ -106,6 +107,6 @@ func SuitAbilityProcess(player: Player, delta: float) -> void:
 	else:
 		HandleAirDash(player, player.input_component.input_doubletap, delta)
 		HandleDoubleJump(player)
-		HandleProjectileJump(player, delta)
+		#HandleProjectileJump(player, delta)
 	if player.is_on_floor():
 		num_airdashes = NUM_AIRDASHES

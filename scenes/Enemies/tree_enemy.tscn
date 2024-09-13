@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://resource/enemy_data.gd" id="2_q2eah"]
 [ext_resource type="PackedScene" uid="uid://y4d73mhbst55" path="res://scenes/components/health_component.tscn" id="2_wdb1n"]
 [ext_resource type="PackedScene" uid="uid://bcx2riapirjvu" path="res://scenes/components/enemy_gravity_component.tscn" id="3_1gv5p"]
-[ext_resource type="PackedScene" uid="uid://dbxvw5y5fbfbn" path="res://scenes/Enemies/tree_attack.tscn" id="4_hxm2w"]
+[ext_resource type="PackedScene" path="res://scenes/Enemies/tree_attack.tscn" id="4_hxm2w"]
 [ext_resource type="Script" path="res://scripts/EnemyAttacks/tree_attack.gd" id="6_5ybma"]
 
 [sub_resource type="Resource" id="Resource_qh4r8"]
