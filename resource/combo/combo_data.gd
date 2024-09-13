@@ -8,3 +8,5 @@ class_name ComboData extends Resource
 @export var comboIntroAnim: Texture2D;
 # Looping animation to play while in this combo.
 @export var comboLoopingAnim: Texture2D;
+#Color of combo text
+@export var comboColour: Color;

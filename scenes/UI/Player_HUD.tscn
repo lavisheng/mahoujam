@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dr38hwgqn2su2" path="res://assets/UI/resource under.png" id="5_ph1sl"]
 [ext_resource type="Texture2D" uid="uid://cwaewy85fa4fj" path="res://assets/UI/resource over.png" id="6_l87hb"]
 [ext_resource type="Texture2D" uid="uid://h7nhft5vvqcw" path="res://assets/UI/resource progress.png" id="7_ojoo8"]
+[ext_resource type="Texture2D" uid="uid://dgdbhviyns808" path="res://assets/UI/resource color.png" id="5_ce81g"]
+[ext_resource type="FontFile" uid="uid://dmnvhswp0bquf" path="res://assets/OtherFonts/Aero.ttf" id="6_d5yw4"]
 
 [sub_resource type="Animation" id="Animation_1sw4n"]
 resource_name = "HP"
@@ -55,30 +57,38 @@ texture_progress_offset = Vector2(2, 0)
 
 [node name="ComboZone" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 163.0
+offset_left = 350.0
+offset_top = 172.0
+offset_right = 642.0
+offset_bottom = 288.0
 
 [node name="ComboID" type="RichTextLabel" parent="ComboZone"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 63.0
-offset_right = 85.0
-offset_bottom = 103.0
+offset_right = 203.0
+offset_bottom = 107.0
+theme_override_fonts/normal_font = ExtResource("6_d5yw4")
+theme_override_font_sizes/normal_font_size = 48
 text = "COMBO"
 
 [node name="ComboCtr" type="RichTextLabel" parent="ComboZone"]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 186.0
 offset_top = 64.0
-offset_right = 118.0
-offset_bottom = 104.0
+offset_right = 230.0
+offset_bottom = 109.0
+theme_override_fonts/normal_font = ExtResource("6_d5yw4")
+theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [node name="ComboSpice" type="RichTextLabel" parent="ComboZone"]
 layout_mode = 0
 offset_top = 4.0
-offset_right = 84.0
-offset_bottom = 30.0
+offset_right = 224.0
+offset_bottom = 60.0
+theme_override_fonts/normal_font = ExtResource("6_d5yw4")
+theme_override_font_sizes/normal_font_size = 48
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
