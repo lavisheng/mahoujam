@@ -9,6 +9,7 @@ signal been_hit
 @export var projectile_fc_component: EnemyProjectileFireControlComponent
 @export var enemy_data: EnemyData
 @export var collision_shape: CollisionShape2D
+@export var attack_component: EnemyAttackBase
 
 @export_subgroup("Settings")
 @export var launch_force: int = -500

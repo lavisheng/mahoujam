@@ -102,8 +102,6 @@ func _physics_process(delta):
 	else:
 		# attack
 		if not in_attack:
-			print(top_result)
-			print(bottom_result)
 			SetAnimation("AttackMode")
 			velocity.x = 0
 			in_attack = true

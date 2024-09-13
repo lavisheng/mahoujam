@@ -21,7 +21,6 @@ var hitstop_delta: float = 0.
 
 
 func _ready() -> void:
-	modulate = inactive_suit.suitColor
 	input_component.attack_signal.connect(HandleAttackCallback)
 	health_component.on_death.connect(HandleKillCallback)
 

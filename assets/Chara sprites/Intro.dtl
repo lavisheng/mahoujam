@@ -1,0 +1,8 @@
+[background arg="res://assets/splash art/cutscene-neighborhood.png" fade="0.0"]
+join Mom (Sad) right [length="2.0"]
+Mom: Please you have to help me!
+join Player left
+Player (Daily): What is it? What happened?
+Mom (Sad): Timmy, he wandered out into the ruins and...
+Player (Magic): I understand, I'll get him back don't worry.
+[clear time="1.0"]

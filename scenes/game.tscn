@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds38e0t1i272s"]
+[gd_scene load_steps=11 format=3 uid="uid://ds38e0t1i272s"]
 
 [ext_resource type="PackedScene" uid="uid://1r43qrqaybai" path="res://scenes/platform.tscn" id="1_as7qk"]
 [ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_7eb8n"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d8bfkwm5gfdx" path="res://scenes/combo_manager.tscn" id="6_6uumq"]
 [ext_resource type="PackedScene" uid="uid://wtq2i2jnibbo" path="res://scenes/UI/Player_HUD.tscn" id="7_d5yql"]
 [ext_resource type="Resource" path="res://resource/test_enemy_B.tres" id="8_rrilj"]
+[ext_resource type="PackedScene" uid="uid://dmrr0g8d3y0qd" path="res://scenes/Enemies/flower.tscn" id="10_g23wi"]
 
 [node name="Game" type="Node2D"]
 
@@ -19,13 +20,13 @@ enemy_data = ExtResource("2_d4efd")
 facing_right = false
 
 [node name="Player" parent="." instance=ExtResource("2_7eb8n")]
-position = Vector2(495, 335)
+position = Vector2(253, 322)
 collision_layer = 5
 collision_mask = 22
 active_suit = ExtResource("4_58l5r")
 inactive_suit = ExtResource("5_430nq")
 
-[node name="AttackComponent" parent="Player" index="7"]
+[node name="AttackComponent" parent="Player" index="8"]
 collision_mask = 31
 
 [node name="air_one" parent="Player/AttackComponent" index="0"]
@@ -60,6 +61,9 @@ position = Vector2(669, 307)
 
 [node name="Platform2" parent="." instance=ExtResource("1_as7qk")]
 position = Vector2(602, 413)
+
+[node name="Flower" parent="." instance=ExtResource("10_g23wi")]
+position = Vector2(583, 221)
 
 [connection signal="body_entered" from="Player/AttackComponent" to="Player/AttackComponent" method="_on_body_entered"]
 
