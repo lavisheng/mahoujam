@@ -31,7 +31,7 @@ func HandleJump(player: Player, want_to_jump: bool, modifier: float, delta: floa
 	is_jumping = player.velocity.y < 0 and not player.is_on_floor()
 
 	if player.animation_player.current_animation == "FallStart" and player.animation_player.current_animation_position / player.animation_player.current_animation_length > 0.9:
-		player.SetAnimation("Falling")
+		player.SetAnimation("Fall")
 	elif not player.is_on_floor() and not is_jumping and player.active_suit.air_movement == false:
 		player.SetAnimation("FallStart")
 

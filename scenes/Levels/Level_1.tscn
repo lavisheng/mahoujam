@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://23830erapn2a"]
+[gd_scene load_steps=19 format=4 uid="uid://23830erapn2a"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_0tnpo"]
 [ext_resource type="Texture2D" uid="uid://bh1b7bn3eohfb" path="res://assets/Background parallax/bg-1.png" id="1_3wtnk"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dmrr0g8d3y0qd" path="res://scenes/Enemies/flower.tscn" id="8_bom1x"]
 [ext_resource type="PackedScene" uid="uid://wtq2i2jnibbo" path="res://scenes/UI/Player_HUD.tscn" id="14_ljj43"]
 [ext_resource type="PackedScene" uid="uid://d8bfkwm5gfdx" path="res://scenes/combo_manager.tscn" id="14_u1wrv"]
+[ext_resource type="PackedScene" uid="uid://bfa507k5mdr7s" path="res://scenes/kill_floor.tscn" id="17_b3yfe"]
+[ext_resource type="PackedScene" uid="uid://d3r00cy8bkgup" path="res://scenes/Enemies/tree_enemy.tscn" id="18_2jk81"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0tnpo")
@@ -86,30 +88,39 @@ tile_set = ExtResource("1_wbw3w")
 
 [node name="Collectable" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(1013, -1171)
+collision_mask = 3
 
 [node name="Collectable2" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(2291, -448)
+collision_mask = 3
 
 [node name="Collectable3" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(4706, -95)
+collision_mask = 3
 
 [node name="Collectable4" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(3431, -789)
+collision_mask = 3
 
 [node name="Collectable5" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(8488, -3906)
+collision_mask = 3
 
 [node name="Collectable6" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(6053, -1759)
+collision_mask = 3
 
 [node name="Collectable7" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(9524, -1729)
+collision_mask = 3
 
 [node name="Collectable8" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(6089, -3135)
+collision_mask = 3
 
 [node name="Collectable9" parent="." instance=ExtResource("5_1mqpx")]
 position = Vector2(9839, -2088)
+collision_mask = 3
 
 [node name="Player" parent="." instance=ExtResource("2_lfs7c")]
 position = Vector2(68, -73)
@@ -187,6 +198,38 @@ position = Vector2(4265, -288)
 
 [node name="Flower4" parent="." instance=ExtResource("8_bom1x")]
 position = Vector2(1129, -1085)
+
+[node name="KillFloor" parent="." instance=ExtResource("17_b3yfe")]
+position = Vector2(5455, -1)
+collision_layer = 16
+collision_mask = 1
+
+[node name="KillFloor2" parent="." instance=ExtResource("17_b3yfe")]
+position = Vector2(6608, -3)
+collision_layer = 16
+collision_mask = 1
+
+[node name="KillFloor3" parent="." instance=ExtResource("17_b3yfe")]
+position = Vector2(6847, -1)
+collision_layer = 16
+collision_mask = 1
+
+[node name="KillFloor4" parent="." instance=ExtResource("17_b3yfe")]
+position = Vector2(8072, -67)
+collision_layer = 16
+collision_mask = 1
+
+[node name="TreeEnemy" parent="." instance=ExtResource("18_2jk81")]
+position = Vector2(2245, -126)
+
+[node name="TreeEnemy2" parent="." instance=ExtResource("18_2jk81")]
+position = Vector2(4593, -180)
+
+[node name="TreeEnemy3" parent="." instance=ExtResource("18_2jk81")]
+position = Vector2(3605, -728)
+
+[node name="TreeEnemy4" parent="." instance=ExtResource("18_2jk81")]
+position = Vector2(9437, -1299)
 
 [connection signal="body_entered" from="Player/AttackComponent" to="Player/AttackComponent" method="_on_body_entered"]
 

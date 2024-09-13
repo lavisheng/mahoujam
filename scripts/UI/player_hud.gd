@@ -14,7 +14,7 @@ func _ready() -> void:
 	#%Resource.max_value = 100
 
 func _physics_process(delta: float) -> void:
-	%Health.value = player.health_component.health
+	%Health.value = player.health_component.GetHealth();
 	%Resource.value = player.active_suit.bar_percentage
 
 func UpdateComboEvent(newData: ComboData, currentCombo: int) -> void:

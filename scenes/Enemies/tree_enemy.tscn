@@ -1,14 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3r00cy8bkgup"]
+[gd_scene load_steps=15 format=3 uid="uid://d3r00cy8bkgup"]
 
 [ext_resource type="Texture2D" uid="uid://c64lk3b7ebi5f" path="res://assets/Enemy anim sprites/tree/tree_attack_1-0.png" id="1_jkt4n"]
 [ext_resource type="Script" path="res://scripts/melee_enemy.gd" id="1_vsnbp"]
 [ext_resource type="Script" path="res://resource/enemy_data.gd" id="2_q2eah"]
 [ext_resource type="PackedScene" uid="uid://y4d73mhbst55" path="res://scenes/components/health_component.tscn" id="2_wdb1n"]
 [ext_resource type="PackedScene" uid="uid://bcx2riapirjvu" path="res://scenes/components/enemy_gravity_component.tscn" id="3_1gv5p"]
-[ext_resource type="PackedScene" path="res://scenes/Enemies/tree_attack.tscn" id="4_hxm2w"]
+[ext_resource type="PackedScene" uid="uid://dbxvw5y5fbfbn" path="res://scenes/Enemies/tree_attack.tscn" id="4_hxm2w"]
 [ext_resource type="Script" path="res://scripts/EnemyAttacks/tree_attack.gd" id="6_5ybma"]
-[ext_resource type="AudioStream" uid="uid://bg0g28vt8ykoq" path="res://assets/Audio/treefoot.wav" id="8_y4wuj"]
-[ext_resource type="AudioStream" uid="uid://bcipwj1xvt3ow" path="res://assets/Audio/treefoot2.wav" id="9_j8kkd"]
 
 [sub_resource type="Resource" id="Resource_qh4r8"]
 script = ExtResource("2_q2eah")
@@ -61,25 +59,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14]
 }
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_y4wuj")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("9_j8kkd")
-}],
-"times": PackedFloat32Array(0, 0.166667)
-}
-tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_6egl1"]
 length = 0.001
@@ -144,5 +123,3 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yru1j")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -6,3 +6,4 @@
 script = ExtResource("1_q0mbt")
 comboIdentifier = "Good"
 comboFloor = 8
+comboColour = Color(0.859112, 0.439423, 0.845212, 1)

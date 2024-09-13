@@ -64,7 +64,8 @@ func GetSpecialInput() -> bool:
 
 
 func GetSwapInput() -> bool:
-	return Input.is_action_just_pressed("suit_swap")
+	#return Input.is_action_just_pressed("suit_swap")
+	return false;
 
 
 func GetAttackInput() -> bool:
