@@ -10,10 +10,11 @@ class_name PlayerHUD extends Control
 func _ready() -> void:
 	statusText.text = ""
 	comboCtr.text = ""
-	%Health.max_value = player.health_component.max_health
-	%Resource.max_value = 100
+	#%Health.max_value = player.health_component.max_health
+	#%Resource.max_value = 100
 
 func _physics_process(delta: float) -> void:
+	print("HEALTH: %s"%player.health_component.health)
 	%Health.value = player.health_component.health
 	%Resource.value = player.active_suit.bar_percentage
 

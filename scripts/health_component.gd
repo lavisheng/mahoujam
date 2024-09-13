@@ -7,7 +7,7 @@ signal on_death(bar_gain)
 @export var max_health: int = 10
 @export var bar_gain: int= 0.
 
-var health: int = max_health
+@onready var health: int = max_health
 
 
 func TakeDamage(damage: int) -> void:

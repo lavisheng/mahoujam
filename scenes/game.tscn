@@ -22,7 +22,6 @@ facing_right = false
 
 [node name="Player" parent="." instance=ExtResource("2_7eb8n")]
 position = Vector2(253, 322)
-collision_layer = 5
 collision_mask = 22
 active_suit = ExtResource("4_58l5r")
 inactive_suit = ExtResource("5_430nq")
