@@ -66,7 +66,7 @@ func HandleDoubleJump(player: Player) -> void:
 		and not player.movement_component.is_jumping
 		and player.input_component.GetJumpInput()
 		and bar_percentage >= 20
-		and projectile_jump_timer <= 0
+		#and projectile_jump_timer <= 0
 	):
 		player.velocity.y = jump_velocity * jump_power_multiplier
 		bar_percentage = clamp(bar_percentage - 20, 0, BAR_MAX)
