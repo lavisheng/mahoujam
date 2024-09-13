@@ -117,10 +117,10 @@ collision_mask = 22
 active_suit = ExtResource("3_dw0kv")
 inactive_suit = ExtResource("4_yqthj")
 
-[node name="AttackComponent" parent="Player" index="8"]
+[node name="AttackComponent" parent="Player" index="9"]
 collision_mask = 31
 
-[node name="Camera2D2" parent="Player" index="11"]
+[node name="Camera2D2" parent="Player" index="12"]
 limit_top = -4000
 limit_right = 11500
 limit_smoothed = true
@@ -138,7 +138,7 @@ player = NodePath("../../Player")
 [node name="TimerManager" parent="." instance=ExtResource("7_58nbw")]
 
 [node name="Flower" parent="." instance=ExtResource("8_bom1x")]
-position = Vector2(196, -73)
+position = Vector2(317, -65)
 
 [node name="ComboManager" parent="." node_paths=PackedStringArray("HUDListener") instance=ExtResource("14_u1wrv")]
 HUDListener = NodePath("../CanvasLayer/Player_HUD")

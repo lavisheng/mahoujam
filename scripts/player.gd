@@ -14,6 +14,7 @@ extends CharacterBody2D
 #@export var homing_target :     Node
 @export var active_suit: SuitData
 @export var inactive_suit: SuitData
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 var bullets = 1
 var bullet = null
 var facing_right = true
@@ -23,7 +24,13 @@ var hitstop_delta: float = 0.
 func _ready() -> void:
 	input_component.attack_signal.connect(HandleAttackCallback)
 	health_component.on_death.connect(HandleKillCallback)
+	SetAnimation("Idle")
 
+
+func SetAnimation(anim_string: String) -> void:
+	var sprite: Sprite2D = $Sprite2D
+	sprite.flip_h = not facing_right
+	animation_player.play(anim_string)
 
 # for signal purposes
 func HandleAttackCallback() -> void:

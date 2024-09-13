@@ -1,3 +1,4 @@
+class_name MeleeEnemy
 extends CharacterBody2D
 
 signal been_hit
@@ -105,7 +106,7 @@ func _physics_process(delta):
 			velocity.x = 0
 			in_attack = true
 			attack_phase = ATTACK_PHASE.STARTUP
-			print("startup")
+			#print("startup")
 			cooldown = enemy_data.startupTime
 			return
 		
@@ -118,12 +119,12 @@ func _physics_process(delta):
 					attack_phase = ATTACK_PHASE.ACTIVE
 					enemy_attack.SetEnable(true)
 					enemy_attack.SetOrientation(facing_right)
-					print("active")
+					#print("active")
 				ATTACK_PHASE.ACTIVE:
 					cooldown += enemy_data.recoveryTime
 					attack_phase = ATTACK_PHASE.RECOVERY
 					enemy_attack.SetEnable(false)
-					print("recovery")
+					#print("recovery")
 				ATTACK_PHASE.RECOVERY:
 					in_attack = false
 					SetAnimation("IdleMode")
@@ -137,7 +138,7 @@ func SetAnimation(anim_string: String) -> void:
 	
 # extract to future enemy movement script
 func HandleAttack(damage: int, launch_vel: float, x_vel_hit = 0) -> void:
-	print("x_vel: %s" % x_vel_hit)
+	#print("x_vel: %s" % x_vel_hit)
 	health_component.TakeDamage(damage)
 	velocity.y = launch_vel
 	velocity.x = x_vel_hit

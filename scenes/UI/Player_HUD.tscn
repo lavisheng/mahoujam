@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://wtq2i2jnibbo"]
+[gd_scene load_steps=12 format=3 uid="uid://wtq2i2jnibbo"]
 
 [ext_resource type="Script" path="res://scripts/UI/player_hud.gd" id="1_gvid4"]
 [ext_resource type="Texture2D" uid="uid://dgyll22ukaqus" path="res://assets/UI/hp under.png" id="2_ee36q"]
@@ -6,10 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://clu3liwwiiyw0" path="res://assets/Chara sprites/protag-magical-potrait.png" id="4_sj5sr"]
 [ext_resource type="Texture2D" uid="uid://cp3bp07hliro6" path="res://assets/UI/hp progress.png" id="4_txqag"]
 [ext_resource type="Texture2D" uid="uid://dr38hwgqn2su2" path="res://assets/UI/resource under.png" id="5_ph1sl"]
+[ext_resource type="FontFile" uid="uid://dmnvhswp0bquf" path="res://assets/OtherFonts/Aero.ttf" id="6_d5yw4"]
 [ext_resource type="Texture2D" uid="uid://cwaewy85fa4fj" path="res://assets/UI/resource over.png" id="6_l87hb"]
 [ext_resource type="Texture2D" uid="uid://h7nhft5vvqcw" path="res://assets/UI/resource progress.png" id="7_ojoo8"]
-[ext_resource type="Texture2D" uid="uid://dgdbhviyns808" path="res://assets/UI/resource color.png" id="5_ce81g"]
-[ext_resource type="FontFile" uid="uid://dmnvhswp0bquf" path="res://assets/OtherFonts/Aero.ttf" id="6_d5yw4"]
 
 [sub_resource type="Animation" id="Animation_1sw4n"]
 resource_name = "HP"
@@ -37,8 +36,8 @@ offset_left = 238.0
 offset_top = 40.0
 offset_right = 2158.0
 offset_bottom = 1120.0
-max_value = 1.0
-value = 1.0
+max_value = 15.0
+value = 15.0
 texture_under = ExtResource("2_ee36q")
 texture_over = ExtResource("3_5mevk")
 texture_progress = ExtResource("4_txqag")

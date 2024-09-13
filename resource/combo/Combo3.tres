@@ -6,4 +6,3 @@
 script = ExtResource("1_ct8uy")
 comboIdentifier = "Excellent"
 comboFloor = 10
-comboColour = Color(0.369827, 0.617076, 0.406054, 1)

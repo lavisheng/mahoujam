@@ -6,4 +6,3 @@
 script = ExtResource("1_mec3g")
 comboIdentifier = "Nice"
 comboFloor = 3
-comboColour = Color(0.471137, 0.540906, 0.928657, 1)
