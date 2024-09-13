@@ -20,6 +20,9 @@ var bullet = null
 var facing_right = true
 var hitstop_delta: float = 0.
 
+var hit_body: bool = false
+var hit_leg: bool = false
+
 
 func _ready() -> void:
 	input_component.attack_signal.connect(HandleAttackCallback)
@@ -49,11 +52,15 @@ func HandleKillCallback(bar_gain: int) -> void:
 
 # handling hurtbox
 func HandleBodyHit(damage: int) -> void:
-	suit_component.HitSuitBody(self, active_suit, damage)
+	if not hit_leg:
+		suit_component.HitSuitBody(self, active_suit, damage)
+		hit_body = true
 
 
 func HandleLegHit(damage: int) -> void:
-	suit_component.HitSuitLeg(self, active_suit, damage)
+	if not hit_body:
+		suit_component.HitSuitLeg(self, active_suit, damage)
+		hit_leg = true
 
 
 func _physics_process(delta):
@@ -93,3 +100,5 @@ func _physics_process(delta):
 	if get_slide_collision_count() > 0:
 		suit_component.CollideSuit(self, active_suit)
 	debugComponent.DebugCombo(input_component.GetDebugInput())
+	hit_leg = false
+	hit_body = false

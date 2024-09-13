@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dggrw0wxguj32"]
+[gd_scene load_steps=46 format=3 uid="uid://dggrw0wxguj32"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0d1te"]
 [ext_resource type="Script" path="res://resource/suit_b_data.gd" id="2_px7l7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b3jh4npkaiv75" path="res://assets/Player/Idle/idle.png" id="4_xdhxh"]
 [ext_resource type="PackedScene" uid="uid://cvbxnhy0x17p4" path="res://scenes/PlayerHurtboxes/PlayerLegs.tscn" id="5_gywwq"]
 [ext_resource type="PackedScene" uid="uid://bmyqf2bljkqnx" path="res://scenes/components/movement_component.tscn" id="5_i6bpe"]
+[ext_resource type="AudioStream" uid="uid://bpklabl3qobp2" path="res://assets/Audio/playerfoot.wav" id="6_6cjtd"]
 [ext_resource type="Script" path="res://scripts/suit_component.gd" id="7_2cdo8"]
 [ext_resource type="PackedScene" uid="uid://crtqh7b1jsjy" path="res://scenes/components/attack_component.tscn" id="7_uie5s"]
 [ext_resource type="PackedScene" uid="uid://d01m1sed0d54l" path="res://scenes/components/debug_component.tscn" id="10_1rs6k"]
@@ -468,6 +469,8 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_whbva"]
 resource_name = "Run"
+length = 0.625005
+loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -476,10 +479,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0416667, 0.0833333, 0.125, 0.166667, 0.208333, 0.25, 0.291667, 0.333333, 0.375, 0.416667, 0.458333, 0.5, 0.541667, 0.583333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0416667, 0.0833333, 0.125, 0.166667, 0.208333, 0.25, 0.291667, 0.333333, 0.375, 0.416667, 0.458333, 0.5, 0.541667, 0.583333, 0.625001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+"values": [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -493,6 +496,25 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 59)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sfx")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_6cjtd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_6cjtd")
+}],
+"times": PackedFloat32Array(0, 0.291667)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_i7cwa"]
 resource_name = "airdash"
@@ -733,6 +755,8 @@ shape = SubResource("RectangleShape2D_e1qwk")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_bajjx")
 autoplay = true
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="body_exited" from="AttackComponent/SuitBAttack" to="AttackComponent/SuitBAttack" method="_on_body_exited"]
 
