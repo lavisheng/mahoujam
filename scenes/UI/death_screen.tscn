@@ -1,0 +1,157 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5e4suq7u84qr"]
+
+[ext_resource type="Texture2D" uid="uid://bh1b7bn3eohfb" path="res://assets/Background parallax/bg-1.png" id="1_5ijor"]
+[ext_resource type="Script" path="res://scripts/UI/main_scene.gd" id="1_ytaka"]
+[ext_resource type="Texture2D" uid="uid://3idnk7f0sobu" path="res://assets/Background parallax/bg-2.png" id="2_60oaj"]
+[ext_resource type="Texture2D" uid="uid://0772kjfgatj2" path="res://assets/Background parallax/bg-3.png" id="3_ncv1d"]
+[ext_resource type="Texture2D" uid="uid://c4jqttiurnktf" path="res://assets/Background parallax/bg-4.png" id="4_ryjif"]
+[ext_resource type="Texture2D" uid="uid://ujem4waddvf7" path="res://assets/Background parallax/bg-5.png" id="5_jlw3m"]
+[ext_resource type="Texture2D" uid="uid://b10rpciohm4v6" path="res://assets/splash art/gameover.png" id="6_pntmd"]
+[ext_resource type="FontFile" uid="uid://d00pw0q7k8sxe" path="res://assets/DialogicStyles/Candara.ttf" id="7_newqc"]
+[ext_resource type="FontFile" uid="uid://dh7t6vrxv4u0u" path="res://assets/OtherFonts/FullmoonMarch-Kingdom.otf" id="8_iaron"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj7r6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvilm"]
+
+[sub_resource type="FontVariation" id="FontVariation_bxfku"]
+base_font = ExtResource("8_iaron")
+spacing_top = 50
+
+[node name="death_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ytaka")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5ijor")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_60oaj")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ncv1d")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ryjif")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jlw3m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pntmd")
+
+[node name="Button" type="Button" parent="TextureRect"]
+modulate = Color(0.552941, 0.482353, 0.47451, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -642.0
+offset_top = 103.0
+offset_right = -498.0
+offset_bottom = 188.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.133018
+theme_override_fonts/font = ExtResource("7_newqc")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lj7r6")
+text = "MAIN MENU"
+
+[node name="Button2" type="Button" parent="TextureRect"]
+modulate = Color(0.482353, 0.423529, 0.415686, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -610.0
+offset_top = 247.0
+offset_right = -465.0
+offset_bottom = 335.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.137013
+theme_override_fonts/font = ExtResource("7_newqc")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rvilm")
+text = "EXIT"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+offset_left = 81.0
+offset_top = 25.0
+offset_right = 1024.0
+offset_bottom = 1018.0
+theme_override_colors/default_color = Color(0.243137, 0.207843, 0.152941, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = SubResource("FontVariation_bxfku")
+theme_override_font_sizes/normal_font_size = 200
+text = "GAME OVER"
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="GoToMainScene"]
+[connection signal="pressed" from="TextureRect/Button2" to="." method="Exit"]
