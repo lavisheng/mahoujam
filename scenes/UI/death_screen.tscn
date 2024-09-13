@@ -142,6 +142,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rvilm")
 text = "EXIT"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
 offset_left = 81.0
 offset_top = 25.0
 offset_right = 1024.0

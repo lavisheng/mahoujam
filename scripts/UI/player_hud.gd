@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 func UpdateComboEvent(newData: ComboData, currentCombo: int) -> void:
 	if newData:
 		statusText.text = newData.comboIdentifier
+		statusText.modulate = newData.comboColour;
 
 	comboCtr.text = str(currentCombo)
 	pass

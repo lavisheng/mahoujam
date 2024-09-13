@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://wtq2i2jnibbo"]
+[gd_scene load_steps=10 format=3 uid="uid://wtq2i2jnibbo"]
 
 [ext_resource type="Script" path="res://scripts/UI/player_hud.gd" id="1_gvid4"]
 [ext_resource type="Texture2D" uid="uid://cywgvphlatisd" path="res://assets/UI/hp bar.png" id="2_pt0mi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1yfqp0e5dgae" path="res://assets/UI/resource bar.png" id="4_4v6ri"]
 [ext_resource type="Texture2D" uid="uid://clu3liwwiiyw0" path="res://assets/Chara sprites/protag-magical-potrait.png" id="4_sj5sr"]
 [ext_resource type="Texture2D" uid="uid://dgdbhviyns808" path="res://assets/UI/resource color.png" id="5_ce81g"]
+[ext_resource type="FontFile" uid="uid://dmnvhswp0bquf" path="res://assets/OtherFonts/Aero.ttf" id="6_d5yw4"]
 
 [sub_resource type="Animation" id="Animation_1sw4n"]
 resource_name = "HP"
@@ -47,30 +48,38 @@ texture_progress = ExtResource("5_ce81g")
 
 [node name="ComboZone" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 163.0
+offset_left = 350.0
+offset_top = 172.0
+offset_right = 642.0
+offset_bottom = 288.0
 
 [node name="ComboID" type="RichTextLabel" parent="ComboZone"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 63.0
-offset_right = 85.0
-offset_bottom = 103.0
+offset_right = 203.0
+offset_bottom = 107.0
+theme_override_fonts/normal_font = ExtResource("6_d5yw4")
+theme_override_font_sizes/normal_font_size = 48
 text = "COMBO"
 
 [node name="ComboCtr" type="RichTextLabel" parent="ComboZone"]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 186.0
 offset_top = 64.0
-offset_right = 118.0
-offset_bottom = 104.0
+offset_right = 230.0
+offset_bottom = 109.0
+theme_override_fonts/normal_font = ExtResource("6_d5yw4")
+theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [node name="ComboSpice" type="RichTextLabel" parent="ComboZone"]
 layout_mode = 0
 offset_top = 4.0
-offset_right = 84.0
-offset_bottom = 30.0
+offset_right = 224.0
+offset_bottom = 60.0
+theme_override_fonts/normal_font = ExtResource("6_d5yw4")
+theme_override_font_sizes/normal_font_size = 48
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
