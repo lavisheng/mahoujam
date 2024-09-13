@@ -17,4 +17,4 @@ func _on_body_entered(body):
 
 func HitPlayer(damage: int) -> void:
 	print("HIT LEG")
-	player.HandleLegHit(damage)
+	#player.HandleLegHit(damage)

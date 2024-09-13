@@ -92,3 +92,4 @@ sources/0 = SubResource("TileSetAtlasSource_v32pl")
 
 [node name="TileMapLayer" type="TileMapLayer"]
 tile_set = SubResource("TileSet_qs5fr")
+collision_enabled = false

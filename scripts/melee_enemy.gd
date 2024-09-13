@@ -6,9 +6,10 @@ signal been_hit
 @export_subgroup("Nodes")
 @export var enemy_gravity_component: EnemyGravityComponent
 @export var health_component: HealthComponent
-@export var projectile_fc_component: EnemyProjectileFireControlComponent
 @export var enemy_data: EnemyData
 @export var collision_shape: CollisionShape2D
+@export var enemy_attack: EnemyAttackBase
+@export var _animation_player: AnimationPlayer
 
 @export_subgroup("Settings")
 @export var launch_force: int = -500
@@ -19,11 +20,12 @@ func _enter_tree() -> void:
 	var p: Player = get_parent().get_node("Player")
 	been_hit.connect(p.HandleHitCallback)
 	health_component.on_death.connect(p.HandleKillCallback)
+	enemy_attack.damage = enemy_data.bulletDamage
+	SetAnimation("IdleMode")
 
 enum ATTACK_PHASE {STARTUP, ACTIVE, RECOVERY}
 var cooldown: float = 1.
 var hitstop_delta: float = 0.
-var max_cooldown: float = enemy_data.startupTime + enemy_data.activeTime + enemy_data.recoveryTime
 
 
 var in_attack: bool = false
@@ -33,8 +35,8 @@ var playerWasVisible: bool = false
 var is_turning: bool = false
 @onready var turn_delta: float = enemy_data.turnPause
 
+
 func _physics_process(delta):
-	print("AH")
 	hitstop_delta = clamp(hitstop_delta - delta, 0, 1)
 	if (hitstop_delta > 0):
 		return
@@ -43,14 +45,15 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 	var space_state = get_world_2d().direct_space_state
-	var player_query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(1000 * (1 if facing_right else -1), 0), 1)
-	var result = space_state.intersect_ray(player_query)
+	var player_query_top = PhysicsRayQueryParameters2D.create(global_position-Vector2(0,100), global_position + Vector2(300 * (1 if facing_right else -1), 0), 1)
+	var top_result = space_state.intersect_ray(player_query_top)
+	var player_query_bottom = PhysicsRayQueryParameters2D.create(global_position+Vector2(0,100), global_position + Vector2(300 * (1 if facing_right else -1), 0), 1)
+	var bottom_result = space_state.intersect_ray(player_query_bottom)
 	var playerWasVisible = false
-	if result.is_empty() and player_visible:
+	if (top_result.is_empty() and bottom_result.is_empty()) and player_visible:
 		playerWasVisible = true
-	player_visible = !result.is_empty()
+	player_visible = !(top_result.is_empty() and bottom_result.is_empty())
 	if not player_visible and !in_attack:
-		print("patroling")
 		# patrol
 		if !enemy_data.isStationary:
 			if is_turning:
@@ -88,40 +91,49 @@ func _physics_process(delta):
 					velocity.x = enemy_data.patrolSpeed * -1
 		else:
 			if playerWasVisible:
-				print("player visible")
 				turn_delta = enemy_data.turnPause
 				playerWasVisible = false
 			else:
 				turn_delta = clamp(turn_delta - delta, 0, enemy_data.turnPause)
-				print(turn_delta)
-				if turn_delta <= 0:
+				if turn_delta <= 0: 
 					facing_right = !facing_right
+					$Sprite2D.flip_h = not facing_right
 					turn_delta = enemy_data.turnPause
 	else:
+		# attack
 		if not in_attack:
+			print(top_result)
+			print(bottom_result)
+			SetAnimation("AttackMode")
 			velocity.x = 0
 			in_attack = true
 			attack_phase = ATTACK_PHASE.STARTUP
 			cooldown = enemy_data.startupTime
 			return
 		
-		cooldown = clamp(cooldown - delta, 0, max_cooldown)
+		cooldown -= delta
 			
 		if cooldown <= 0:
 			match attack_phase:
 				ATTACK_PHASE.STARTUP:
 					cooldown += enemy_data.activeTime
 					attack_phase = ATTACK_PHASE.ACTIVE
-					var test_proj_func = func(projectile: Node2D, _target: Vector2, d: float):
-						projectile.position += _target * d
-					projectile_fc_component.Fire(self, enemy_data.bulletSpeed * Vector2(1 * (1 if facing_right else -1),0), Vector2(10 * (1 if facing_right else -1),0), test_proj_func)
+					enemy_attack.SetEnable(true)
+					enemy_attack.SetOrientation(facing_right)
 				ATTACK_PHASE.ACTIVE:
 					cooldown += enemy_data.recoveryTime
 					attack_phase = ATTACK_PHASE.RECOVERY
+					enemy_attack.SetEnable(false)
 				ATTACK_PHASE.RECOVERY:
 					in_attack = false
+					SetAnimation("IdleMode")
 	#print(velocity) 
 	move_and_slide()
+
+func SetAnimation(anim_string: String) -> void:
+	var sprite: Sprite2D = $Sprite2D
+	sprite.flip_h = not facing_right
+	_animation_player.play(anim_string)
 	
 # extract to future enemy movement script
 func HandleAttack(damage: int, launch_vel: float, x_vel_hit = 0) -> void:
@@ -130,4 +142,3 @@ func HandleAttack(damage: int, launch_vel: float, x_vel_hit = 0) -> void:
 	velocity.y = launch_vel
 	velocity.x = x_vel_hit
 	been_hit.emit()
-	#EventBus.SendEvent( "ComboIncrement", false );

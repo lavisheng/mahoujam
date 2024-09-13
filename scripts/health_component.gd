@@ -11,6 +11,8 @@ var health: int = max_health
 
 
 func TakeDamage(damage: int) -> void:
+	if damage > 0:
+		print(str("TakeDamage(", damage, ")"))
 	health = clamp(health - damage, 0, max_health)
 
 
@@ -25,5 +27,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_attack_component_body_entered(body):
+	print("o_a_c_b_e()")
 	print(body)
 	TakeDamage(5)

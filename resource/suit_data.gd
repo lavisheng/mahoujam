@@ -36,4 +36,5 @@ func SuitHitBodyCallback(player: Player, damage: int) -> void:
 
 
 func SuitHitLegCallback(player: Player, damage: int) -> void:
-	player.health_component.TakeDamage(damage)
+	pass
+	#player.health_component.TakeDamage(damage)

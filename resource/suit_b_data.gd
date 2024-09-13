@@ -72,7 +72,8 @@ func HandleDoubleJump(player: Player) -> void:
 
 func SuitHitLegCallback(player: Player, damage: int) -> void:
 	if player.is_on_floor():
-		player.health_component.TakeDamage(damage)
+		#player.health_component.TakeDamage(damage)
+		pass
 	else:
 		projectile_jump_timer = FRAME * projectile_frame_jump_window
 		# store leg damage for later
