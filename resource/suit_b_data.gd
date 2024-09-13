@@ -90,6 +90,7 @@ func HandleProjectileJump(player: Player, delta: float) -> void:
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
+	print("RESOURCES: %s"% bar_percentage)
 	if special_move:
 		if player.attack_component.curr.state >= Global.MOVE_STATE.recovery:
 			# dash over

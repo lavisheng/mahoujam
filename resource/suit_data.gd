@@ -28,7 +28,6 @@ func SuitCollisionCallback(player: Player):
 
 
 func AddBar(val: int) -> void:
-	print("VAL: %s" % val)
 	bar_percentage = clamp(bar_percentage + val, 0, BAR_MAX)
 
 

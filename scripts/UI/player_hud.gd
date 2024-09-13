@@ -11,7 +11,7 @@ func _ready() -> void:
 	statusText.text = ""
 	comboCtr.text = ""
 	%Health.max_value = player.health_component.max_health
-	%Resource.value = player.active_suit.BAR_MAX
+	%Resource.max_value = 100
 
 func _physics_process(delta: float) -> void:
 	%Health.value = player.health_component.health

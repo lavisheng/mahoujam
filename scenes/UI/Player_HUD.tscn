@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://wtq2i2jnibbo"]
+[gd_scene load_steps=11 format=3 uid="uid://wtq2i2jnibbo"]
 
 [ext_resource type="Script" path="res://scripts/UI/player_hud.gd" id="1_gvid4"]
-[ext_resource type="Texture2D" uid="uid://cywgvphlatisd" path="res://assets/UI/hp bar.png" id="2_pt0mi"]
-[ext_resource type="Texture2D" uid="uid://dqngjji2u5bhp" path="res://assets/UI/hp color.png" id="3_cbevb"]
-[ext_resource type="Texture2D" uid="uid://1yfqp0e5dgae" path="res://assets/UI/resource bar.png" id="4_4v6ri"]
+[ext_resource type="Texture2D" uid="uid://dgyll22ukaqus" path="res://assets/UI/hp under.png" id="2_ee36q"]
+[ext_resource type="Texture2D" uid="uid://dnxppk3xn2ual" path="res://assets/UI/hp over.png" id="3_5mevk"]
 [ext_resource type="Texture2D" uid="uid://clu3liwwiiyw0" path="res://assets/Chara sprites/protag-magical-potrait.png" id="4_sj5sr"]
-[ext_resource type="Texture2D" uid="uid://dgdbhviyns808" path="res://assets/UI/resource color.png" id="5_ce81g"]
+[ext_resource type="Texture2D" uid="uid://cp3bp07hliro6" path="res://assets/UI/hp progress.png" id="4_txqag"]
+[ext_resource type="Texture2D" uid="uid://dr38hwgqn2su2" path="res://assets/UI/resource under.png" id="5_ph1sl"]
+[ext_resource type="Texture2D" uid="uid://cwaewy85fa4fj" path="res://assets/UI/resource over.png" id="6_l87hb"]
+[ext_resource type="Texture2D" uid="uid://h7nhft5vvqcw" path="res://assets/UI/resource progress.png" id="7_ojoo8"]
 
 [sub_resource type="Animation" id="Animation_1sw4n"]
 resource_name = "HP"
@@ -29,21 +31,27 @@ comboCtr = NodePath("ComboZone/ComboCtr")
 [node name="Health" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = 238.0
+offset_top = 40.0
+offset_right = 2158.0
+offset_bottom = 1120.0
 max_value = 1.0
 value = 1.0
-texture_over = ExtResource("2_pt0mi")
-texture_progress = ExtResource("3_cbevb")
+texture_under = ExtResource("2_ee36q")
+texture_over = ExtResource("3_5mevk")
+texture_progress = ExtResource("4_txqag")
 
 [node name="Resource" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-value = 100.0
-texture_over = ExtResource("4_4v6ri")
-texture_progress = ExtResource("5_ce81g")
+offset_left = 238.0
+offset_top = 117.0
+offset_right = 736.0
+offset_bottom = 160.0
+texture_under = ExtResource("5_ph1sl")
+texture_over = ExtResource("6_l87hb")
+texture_progress = ExtResource("7_ojoo8")
+texture_progress_offset = Vector2(2, 0)
 
 [node name="ComboZone" type="Panel" parent="."]
 layout_mode = 0

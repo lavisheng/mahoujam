@@ -120,12 +120,6 @@ inactive_suit = ExtResource("4_yqthj")
 [node name="AttackComponent" parent="Player" index="8"]
 collision_mask = 31
 
-[node name="air_one" parent="Player/AttackComponent" index="0"]
-bar_gain = 0
-
-[node name="GroundLauncher" parent="Player/AttackComponent" index="2"]
-bar_gain = 0
-
 [node name="Camera2D2" parent="Player" index="11"]
 limit_top = -4000
 limit_right = 11500
