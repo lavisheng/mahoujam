@@ -120,10 +120,24 @@ inactive_suit = ExtResource("4_yqthj")
 [node name="AttackComponent" parent="Player" index="8"]
 collision_mask = 31
 
+[node name="air_one" parent="Player/AttackComponent" index="0"]
+bar_gain = 0
+
+[node name="GroundLauncher" parent="Player/AttackComponent" index="2"]
+bar_gain = 0
+
 [node name="Camera2D2" parent="Player" index="11"]
 limit_top = -4000
 limit_right = 11500
 limit_smoothed = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Player_HUD" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("14_ljj43")]
+unique_name_in_owner = true
+scale = Vector2(0.8, 0.8)
+player = NodePath("../../Player")
 
 [node name="CollectableManager" parent="." instance=ExtResource("6_fwduk")]
 
@@ -132,10 +146,8 @@ limit_smoothed = true
 [node name="Flower" parent="." instance=ExtResource("8_bom1x")]
 position = Vector2(196, -73)
 
-[node name="Player_HUD" parent="." instance=ExtResource("14_ljj43")]
-
 [node name="ComboManager" parent="." node_paths=PackedStringArray("HUDListener") instance=ExtResource("14_u1wrv")]
-HUDListener = NodePath("../Player_HUD")
+HUDListener = NodePath("../CanvasLayer/Player_HUD")
 
 [node name="Flower13" parent="." instance=ExtResource("8_bom1x")]
 position = Vector2(8182, -3787)

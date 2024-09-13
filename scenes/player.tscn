@@ -125,6 +125,8 @@ gravity = 1050.0
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("gravity_component") instance=ExtResource("5_i6bpe")]
 gravity_component = NodePath("../GravityComponent")
+ground_speed = 500.0
+jump_velocity = -600.0
 
 [node name="SuitComponent" type="Node" parent="."]
 script = ExtResource("7_2cdo8")
@@ -140,6 +142,7 @@ suit_b_special = NodePath("SuitBAttack")
 [node name="air_one" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_fevue")]
 position = Vector2(37, 17)
 vertical_velocity = -500.0
+bar_gain = 0
 hitbox = NodePath("air_hitbox")
 
 [node name="air_hitbox" type="CollisionShape2D" parent="AttackComponent/air_one"]
@@ -160,6 +163,7 @@ debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 [node name="GroundLauncher" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_e042t")]
 position = Vector2(23, 0)
 vertical_velocity = -500.0
+bar_gain = 0
 hitbox = NodePath("GroundHitbox")
 
 [node name="GroundHitbox" type="CollisionShape2D" parent="AttackComponent/GroundLauncher"]

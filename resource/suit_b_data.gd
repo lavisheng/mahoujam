@@ -40,12 +40,12 @@ func SuitAbilityCallback(player: Player) -> void:
 
 
 func HandleAirDash(player: Player, direction: float, delta: float) -> void:
-	if not special_move and not player.is_on_floor() and direction != 0 and bar_percentage >= 0.2:
+	if not special_move and not player.is_on_floor() and direction != 0 and bar_percentage >= 20:
 		player.velocity.x = direction * dash_speed
 		air_movement = true
 		player.velocity.y = 0
 		airdash_delta = .75
-		bar_percentage = clamp(bar_percentage - 0.2, 0., 1.)
+		bar_percentage = clamp(bar_percentage - 20, 0, BAR_MAX)
 	elif air_movement and airdash_delta > 0:
 		airdash_delta -= delta
 		player.velocity.x *= airdash_delta * airdash_delta * airdash_delta
@@ -63,11 +63,11 @@ func HandleDoubleJump(player: Player) -> void:
 		not player.is_on_floor()
 		and not player.movement_component.is_jumping
 		and player.input_component.GetJumpInput()
-		and bar_percentage >= 0.2
+		and bar_percentage >= 20
 		and projectile_jump_timer <= 0
 	):
 		player.velocity.y = jump_velocity * jump_power_multiplier
-		bar_percentage = clamp(bar_percentage - 0.2, 0., 1.)
+		bar_percentage = clamp(bar_percentage - 20, 0, BAR_MAX)
 
 
 func SuitHitLegCallback(player: Player, damage: int) -> void:
@@ -83,7 +83,6 @@ func HandleProjectileJump(player: Player, delta: float) -> void:
 	projectile_jump_timer -= delta
 	if projectile_jump_timer > 0:
 		if player.input_component.GetJumpInput():
-			print("JUMPED OFF OF PROJECTILE")
 			player.velocity.y = jump_velocity * jump_power_multiplier
 			projectile_jump_timer = 0
 	else:

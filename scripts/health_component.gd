@@ -5,7 +5,7 @@ signal on_death(bar_gain)
 
 @export_subgroup("Settings")
 @export var max_health: int = 10
-@export var bar_gain: float = 0.
+@export var bar_gain: int= 0.
 
 var health: int = max_health
 

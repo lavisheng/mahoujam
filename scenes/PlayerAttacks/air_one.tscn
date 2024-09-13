@@ -9,6 +9,6 @@ startup_frames = 3
 active_frames = 4
 recovery_frames = 20
 cancellable = false
-bar_gain = 0.05
+bar_gain = 20
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
