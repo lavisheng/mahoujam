@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://wtq2i2jnibbo" path="res://scenes/UI/Player_HUD.tscn" id="7_d5yql"]
 [ext_resource type="Resource" path="res://resource/test_enemy_B.tres" id="8_rrilj"]
 [ext_resource type="PackedScene" uid="uid://dmrr0g8d3y0qd" path="res://scenes/Enemies/flower.tscn" id="10_g23wi"]
-[ext_resource type="PackedScene" path="res://scenes/Enemies/tree_enemy.tscn" id="11_3t0le"]
+[ext_resource type="PackedScene" uid="uid://d3r00cy8bkgup" path="res://scenes/Enemies/tree_enemy.tscn" id="11_3t0le"]
 
 [node name="Game" type="Node2D"]
 

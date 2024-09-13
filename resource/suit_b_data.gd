@@ -6,7 +6,7 @@ const NUM_AIRDASHES = 2
 const FRAME = 1 / 60.
 @export_subgroup("Settings")
 var num_airdashes: int = NUM_AIRDASHES
-@export var airdash_delta: float = .75
+@export var airdash_delta: float = 1.6
 @export var dash_speed: float = 2000
 @export var jump_velocity: float = -250.0
 @export var special_jump_velocity: float = -600
@@ -34,21 +34,23 @@ func SuitAbilityCallback(player: Player) -> void:
 			player.velocity.x = special_dash_startup
 		else:
 			player.velocity.x = -1 * special_dash_startup
+		player.SetAnimation("Fleche")
 		player.velocity.y = 0
 		air_movement = true
 		special_move = true
 
 
 func HandleAirDash(player: Player, direction: float, delta: float) -> void:
-	if not special_move and not player.is_on_floor() and direction != 0 and bar_percentage >= 20:
+	if not air_movement and not special_move and not player.is_on_floor() and direction != 0 and bar_percentage >= 20:
 		player.velocity.x = direction * dash_speed
 		air_movement = true
 		player.velocity.y = 0
-		airdash_delta = .75
+		airdash_delta = 1.6
 		bar_percentage = clamp(bar_percentage - 20, 0, BAR_MAX)
+		player.SetAnimation("airdash")
 	elif air_movement and airdash_delta > 0:
 		airdash_delta -= delta
-		player.velocity.x *= airdash_delta * airdash_delta * airdash_delta
+		player.velocity.x *= airdash_delta * airdash_delta
 		if abs(player.velocity.x) <= 0.05:
 			airdash_delta = 0
 			post_dash_linger_timer = post_dash_linger_frames * FRAME
@@ -90,7 +92,6 @@ func HandleProjectileJump(player: Player, delta: float) -> void:
 
 
 func SuitAbilityProcess(player: Player, delta: float) -> void:
-	print("RESOURCES: %s"% bar_percentage)
 	if special_move:
 		if player.attack_component.curr.state >= Global.MOVE_STATE.recovery:
 			# dash over

@@ -12,4 +12,5 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body):
-	body.HandleAttack(damage, vertical_velocity)
+	if body is MeleeEnemy or body is Enemy:
+		body.HandleAttack(damage, vertical_velocity)

@@ -30,8 +30,10 @@ func HandleAttack(player: Player) -> void:
 	if curr.state == Global.MOVE_STATE.rest:
 		if player.is_on_floor():
 			curr = ground_launch
+			player.SetAnimation("GroundAttack")
 		else:
 			curr = air_one
+			player.SetAnimation("AirAttack")
 		curr.SetOrientation(player.facing_right)
 		curr.state = Global.MOVE_STATE.startup
 		timer = 0.
@@ -40,6 +42,7 @@ func HandleAttack(player: Player) -> void:
 			curr = air_two
 			curr.SetOrientation(player.facing_right)
 			curr.state = Global.MOVE_STATE.startup
+			player.SetAnimation("AirAttack2")
 			timer = 0.
 
 func SuitBSpecial(orientation: bool) -> bool:

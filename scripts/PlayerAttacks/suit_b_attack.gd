@@ -19,4 +19,5 @@ func _on_body_entered(body):
 
 
 func _on_body_exited(body: Node2D) -> void:
-	body.velocity.x = 0
+	if body is Enemy or body is MeleeEnemy:
+		body.velocity.x = 0
