@@ -85,7 +85,6 @@ size = Vector2(46, 12)
 size = Vector2(51, 69)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "suit_component", "attack_component", "health_component", "debugComponent")]
-collision_layer = 262
 collision_mask = 262
 script = ExtResource("1_0d1te")
 gravity_component = NodePath("GravityComponent")
@@ -138,7 +137,7 @@ air_two = NodePath("air_two")
 suit_b_special = NodePath("SuitBAttack")
 
 [node name="air_one" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_fevue")]
-position = Vector2(37, 17)
+position = Vector2(76, 17)
 vertical_velocity = -500.0
 hitbox = NodePath("air_hitbox")
 
@@ -148,7 +147,7 @@ disabled = true
 debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="air_two" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("11_n6yt3")]
-position = Vector2(36, 0)
+position = Vector2(75, 0)
 vertical_velocity = -100.0
 hitbox = NodePath("air_two_hitbox")
 
@@ -158,7 +157,7 @@ disabled = true
 debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="GroundLauncher" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("10_e042t")]
-position = Vector2(23, 0)
+position = Vector2(62, 0)
 vertical_velocity = -500.0
 hitbox = NodePath("GroundHitbox")
 
@@ -169,7 +168,7 @@ disabled = true
 debug_color = Color(0.959712, 0.0562438, 0.486985, 0.42)
 
 [node name="SuitBAttack" parent="AttackComponent" node_paths=PackedStringArray("hitbox") instance=ExtResource("13_deq7p")]
-position = Vector2(36, 2)
+position = Vector2(75, 2)
 collision_mask = 2
 startup_frames = 2
 hitbox = NodePath("SuitBHitbox")
