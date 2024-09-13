@@ -17,7 +17,8 @@ func TakeDamage(damage: int) -> void:
 func Die() -> void:
 	on_death.emit(bar_gain)
 	get_parent().queue_free()
-	#get_tree().change_scene_to_file( "res://scenes/UI/death_screen.tscn" );
+	if get_parent() is Player:
+		get_tree().change_scene_to_file( "res://scenes/UI/death_screen.tscn" );
 
 
 func _process(_delta: float) -> void:
