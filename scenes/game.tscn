@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds38e0t1i272s"]
+[gd_scene load_steps=12 format=3 uid="uid://ds38e0t1i272s"]
 
 [ext_resource type="PackedScene" uid="uid://1r43qrqaybai" path="res://scenes/platform.tscn" id="1_as7qk"]
 [ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_7eb8n"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://wtq2i2jnibbo" path="res://scenes/UI/Player_HUD.tscn" id="7_d5yql"]
 [ext_resource type="Resource" path="res://resource/test_enemy_B.tres" id="8_rrilj"]
 [ext_resource type="PackedScene" uid="uid://dmrr0g8d3y0qd" path="res://scenes/Enemies/flower.tscn" id="10_g23wi"]
+[ext_resource type="PackedScene" path="res://scenes/Enemies/tree_enemy.tscn" id="11_3t0le"]
 
 [node name="Game" type="Node2D"]
 
@@ -50,11 +51,12 @@ collision_mask = 12
 enemy_data = ExtResource("8_rrilj")
 facing_right = false
 
-[node name="Player_HUD" parent="." node_paths=PackedStringArray("comboManagerNode") instance=ExtResource("7_d5yql")]
+[node name="Player_HUD" parent="." node_paths=PackedStringArray("comboManagerNode", "player") instance=ExtResource("7_d5yql")]
 comboManagerNode = NodePath("../ComboManager")
+player = NodePath("../Player")
 
 [node name="Platform" parent="." instance=ExtResource("1_as7qk")]
-position = Vector2(348, 477)
+position = Vector2(304, 477)
 
 [node name="Platform3" parent="." instance=ExtResource("1_as7qk")]
 position = Vector2(669, 307)
@@ -64,6 +66,9 @@ position = Vector2(602, 413)
 
 [node name="Flower" parent="." instance=ExtResource("10_g23wi")]
 position = Vector2(583, 221)
+
+[node name="TreeEnemy" parent="." instance=ExtResource("11_3t0le")]
+position = Vector2(381, 370)
 
 [connection signal="body_entered" from="Player/AttackComponent" to="Player/AttackComponent" method="_on_body_entered"]
 

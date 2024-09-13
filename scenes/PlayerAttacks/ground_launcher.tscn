@@ -8,6 +8,6 @@ script = ExtResource("1_isn63")
 startup_frames = 6
 active_frames = 8
 recovery_frames = 4
-bar_gain = 0.2
+bar_gain = 20
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

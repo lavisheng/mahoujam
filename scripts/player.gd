@@ -36,7 +36,7 @@ func HandleHitCallback() -> void:
 	EventBus.SendEvent( "ComboIncrement", false )
 
 
-func HandleKillCallback(bar_gain: float) -> void:
+func HandleKillCallback(bar_gain: int) -> void:
 	active_suit.AddBar(bar_gain)
 
 
