@@ -17,3 +17,8 @@ func GoToMainScene() -> void:
 
 func Exit() -> void:
 	get_tree().quit();
+
+
+func _on_intro_finished() -> void:
+	%Intro.stop() 
+	%SongLoop.play(0.)

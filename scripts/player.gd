@@ -105,7 +105,7 @@ func _physics_process(delta):
 
 
 func _on_intro_finished() -> void:
-	%Intro.stop()
+	%Intro.stop() 
 	%SongLoop.play(0.)
 
 	 

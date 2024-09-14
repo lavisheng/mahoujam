@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgkejkt7r2q1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dgkejkt7r2q1k"]
 
 [ext_resource type="Script" path="res://scripts/UI/main_scene.gd" id="1_gstu2"]
 [ext_resource type="Texture2D" uid="uid://byy8aksvnijyh" path="res://assets/splash art/mainmenu-colorfix.png" id="1_y40hp"]
 [ext_resource type="FontFile" uid="uid://dh7t6vrxv4u0u" path="res://assets/OtherFonts/FullmoonMarch-Kingdom.otf" id="3_asnkh"]
 [ext_resource type="FontFile" uid="uid://d00pw0q7k8sxe" path="res://assets/DialogicStyles/Candara.ttf" id="4_5e112"]
+[ext_resource type="AudioStream" uid="uid://c404riuex38lu" path="res://assets/Sound/PIANO INTRO 1ST PLAY.wav" id="5_5x6by"]
+[ext_resource type="AudioStream" uid="uid://bi7ch7o4hyq5d" path="res://assets/Sound/PIANO INTRO loop.wav" id="6_eavtv"]
 
 [sub_resource type="FontVariation" id="FontVariation_7qdr5"]
 base_font = ExtResource("3_asnkh")
@@ -87,5 +89,15 @@ theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5tb3w")
 text = "EXIT"
 
+[node name="Intro" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_5x6by")
+autoplay = true
+
+[node name="SongLoop" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_eavtv")
+
 [connection signal="pressed" from="TextureRect/Button" to="." method="StartGame"]
 [connection signal="pressed" from="TextureRect/Button2" to="." method="Exit"]
+[connection signal="finished" from="Intro" to="." method="_on_intro_finished"]
