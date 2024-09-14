@@ -136,6 +136,15 @@ limit_top = -4000
 limit_right = 11500
 limit_smoothed = true
 
+[node name="Intro" parent="Player" index="14"]
+volume_db = -10.0
+
+[node name="SongLoop" parent="Player" index="15"]
+volume_db = -10.0
+
+[node name="sfx" parent="Player" index="16"]
+volume_db = 9.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
 

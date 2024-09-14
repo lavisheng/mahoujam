@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://1r43qrqaybai" path="res://scenes/platform.tscn" id="1_as7qk"]
 [ext_resource type="PackedScene" uid="uid://dggrw0wxguj32" path="res://scenes/player.tscn" id="2_7eb8n"]
-[ext_resource type="Resource" path="res://resource/test_enemy_A.tres" id="2_d4efd"]
+[ext_resource type="Resource" uid="uid://bcg8scutevts4" path="res://resource/test_enemy_A.tres" id="2_d4efd"]
 [ext_resource type="Resource" uid="uid://bcvwbkax8slcw" path="res://resource/suit_b_resource.tres" id="4_58l5r"]
 [ext_resource type="PackedScene" uid="uid://caics714qast6" path="res://scenes/enemy.tscn" id="4_a426q"]
 [ext_resource type="Resource" uid="uid://62bnbohbk04s" path="res://resource/suit_a_resource.tres" id="5_430nq"]
 [ext_resource type="PackedScene" uid="uid://d8bfkwm5gfdx" path="res://scenes/combo_manager.tscn" id="6_6uumq"]
 [ext_resource type="PackedScene" uid="uid://wtq2i2jnibbo" path="res://scenes/UI/Player_HUD.tscn" id="7_d5yql"]
-[ext_resource type="Resource" path="res://resource/test_enemy_B.tres" id="8_rrilj"]
+[ext_resource type="Resource" uid="uid://c7rr5rc3dq0to" path="res://resource/test_enemy_B.tres" id="8_rrilj"]
 [ext_resource type="PackedScene" uid="uid://dmrr0g8d3y0qd" path="res://scenes/Enemies/flower.tscn" id="10_g23wi"]
 [ext_resource type="PackedScene" uid="uid://d3r00cy8bkgup" path="res://scenes/Enemies/tree_enemy.tscn" id="11_3t0le"]
 
