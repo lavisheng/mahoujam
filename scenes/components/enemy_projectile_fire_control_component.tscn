@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jmetw2b5l285"]
+
+[ext_resource type="Script" path="res://scripts/enemy_projectile_fire_control_component.gd" id="1_bpn8s"]
+
+[node name="EnemyProjectileFireControlComponent" type="Node2D"]
+script = ExtResource("1_bpn8s")

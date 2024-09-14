@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvbxnhy0x17p4"]
+
+[ext_resource type="Script" path="res://scripts/PlayerHurtboxes/player_legs.gd" id="1_1kxtj"]
+
+[node name="PlayerLegs" type="Area2D"]
+script = ExtResource("1_1kxtj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

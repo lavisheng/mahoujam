@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bi7ch7o4hyq5d"
+path="res://.godot/imported/PIANO INTRO loop.wav-6146fb6d5511b59b8edef82e1c1062ef.sample"
+
+[deps]
+
+source_file="res://assets/Sound/PIANO INTRO loop.wav"
+dest_files=["res://.godot/imported/PIANO INTRO loop.wav-6146fb6d5511b59b8edef82e1c1062ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

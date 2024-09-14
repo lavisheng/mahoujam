@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp80osalyhqsr"]
+
+[ext_resource type="Script" path="res://scripts/PlayerAttacks/suit_b_attack.gd" id="1_4imos"]
+
+[node name="SuitBAttack" type="Area2D"]
+script = ExtResource("1_4imos")
+startup_frames = 12
+active_frames = 10
+recovery_frames = 16
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

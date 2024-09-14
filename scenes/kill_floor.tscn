@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfa507k5mdr7s"]
+
+[ext_resource type="Script" path="res://scripts/kill_floor.gd" id="1_4e4o1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c0wi"]
+size = Vector2(1166, 20)
+
+[node name="KillFloor" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_4e4o1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(573, 0)
+shape = SubResource("RectangleShape2D_6c0wi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

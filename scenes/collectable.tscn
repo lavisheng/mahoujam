@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://blypv8iu3rnnk"]
+
+[ext_resource type="Texture2D" uid="uid://dlhkm6fkcnx0o" path="res://assets/placeholderA.png" id="1_a44rk"]
+[ext_resource type="Script" path="res://scripts/collectable.gd" id="1_vncjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btygm"]
+size = Vector2(99, 99)
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_vncjx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.702832, 0.315188, 1)
+texture = ExtResource("1_a44rk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_btygm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

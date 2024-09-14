@@ -1,0 +1,6 @@
+extends "res://scripts/EnemyAttacks/enemy_attack_base.gd"
+
+func _enter_tree() -> void:
+	right_facing_transform = transform
+	left_facing_transform = transform * Transform2D.FLIP_X
+	left_facing_transform.origin.x *= -1
