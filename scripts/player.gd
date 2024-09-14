@@ -102,3 +102,10 @@ func _physics_process(delta):
 	debugComponent.DebugCombo(input_component.GetDebugInput())
 	hit_leg = false
 	hit_body = false
+
+
+func _on_intro_finished() -> void:
+	%Intro.stop()
+	%SongLoop.play(0.)
+
+	 
