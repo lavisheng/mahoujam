@@ -92,13 +92,13 @@ text = "EXIT"
 [node name="Intro" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_5x6by")
-volume_db = -3.0
+volume_db = -10.0
 autoplay = true
 
 [node name="SongLoop" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_eavtv")
-volume_db = -3.0
+volume_db = -10.0
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="StartGame"]
 [connection signal="pressed" from="TextureRect/Button2" to="." method="Exit"]
